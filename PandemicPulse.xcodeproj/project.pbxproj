@@ -9,23 +9,31 @@
 /* Begin PBXBuildFile section */
 		EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1152BB0200700B19D36 /* AppDelegate.swift */; };
 		EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1172BB0200700B19D36 /* SceneDelegate.swift */; };
-		EF60A11A2BB0200700B19D36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* ViewController.swift */; };
+		EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* MonitorViewController.swift */; };
 		EF60A11F2BB0200A00B19D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF60A11E2BB0200A00B19D36 /* Assets.xcassets */; };
 		EF60A1222BB0200A00B19D36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF60A1202BB0200A00B19D36 /* LaunchScreen.storyboard */; };
 		EF60A12A2BB023F200B19D36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF60A1292BB023F200B19D36 /* .swiftlint.yml */; };
 		EF60A12C2BB0243C00B19D36 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EF60A12B2BB0243C00B19D36 /* .swiftformat */; };
+		EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A12E2BB0299300B19D36 /* PandemicPulseAssembly.swift */; };
+		EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */; };
+		EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */; };
+		EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EF60A1122BB0200700B19D36 /* PandemicPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF60A1152BB0200700B19D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF60A1172BB0200700B19D36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EF60A1192BB0200700B19D36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EF60A1192BB0200700B19D36 /* MonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
 		EF60A11E2BB0200A00B19D36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF60A1212BB0200A00B19D36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF60A1232BB0200A00B19D36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF60A1292BB023F200B19D36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF60A12B2BB0243C00B19D36 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
+		EF60A12E2BB0299300B19D36 /* PandemicPulseAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemicPulseAssembly.swift; sourceTree = "<group>"; };
+		EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorPresenter.swift; sourceTree = "<group>"; };
+		EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemicDataManager.swift; sourceTree = "<group>"; };
+		EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorModuleAssembly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +66,9 @@
 		EF60A1142BB0200700B19D36 /* PandemicPulse */ = {
 			isa = PBXGroup;
 			children = (
-				EF60A1152BB0200700B19D36 /* AppDelegate.swift */,
-				EF60A1172BB0200700B19D36 /* SceneDelegate.swift */,
-				EF60A1192BB0200700B19D36 /* ViewController.swift */,
+				EF60A1302BB02A5B00B19D36 /* Root */,
+				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
+				EF60A1342BB02D4800B19D36 /* Modules */,
 				EF60A1292BB023F200B19D36 /* .swiftlint.yml */,
 				EF60A12B2BB0243C00B19D36 /* .swiftformat */,
 				EF60A11E2BB0200A00B19D36 /* Assets.xcassets */,
@@ -68,6 +76,34 @@
 				EF60A1232BB0200A00B19D36 /* Info.plist */,
 			);
 			path = PandemicPulse;
+			sourceTree = "<group>";
+		};
+		EF60A1302BB02A5B00B19D36 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A1152BB0200700B19D36 /* AppDelegate.swift */,
+				EF60A1172BB0200700B19D36 /* SceneDelegate.swift */,
+				EF60A12E2BB0299300B19D36 /* PandemicPulseAssembly.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		EF60A1312BB02B4300B19D36 /* MonitorModule */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */,
+				EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */,
+				EF60A1192BB0200700B19D36 /* MonitorViewController.swift */,
+			);
+			path = MonitorModule;
+			sourceTree = "<group>";
+		};
+		EF60A1342BB02D4800B19D36 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A1312BB02B4300B19D36 /* MonitorModule */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +201,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF60A11A2BB0200700B19D36 /* ViewController.swift in Sources */,
+				EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */,
+				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
+				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
+				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,
+				EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */,
 				EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */,
 				EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */,
 			);
