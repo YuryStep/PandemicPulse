@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */; };
+		EF1454652BB045E10075B665 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454642BB045E10075B665 /* Array+Extension.swift */; };
 		EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1152BB0200700B19D36 /* AppDelegate.swift */; };
 		EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1172BB0200700B19D36 /* SceneDelegate.swift */; };
 		EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* MonitorViewController.swift */; };
@@ -18,9 +20,12 @@
 		EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */; };
 		EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */; };
 		EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */; };
+		EF60A13A2BB031D700B19D36 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1392BB031D700B19D36 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeMatrix.swift; sourceTree = "<group>"; };
+		EF1454642BB045E10075B665 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		EF60A1122BB0200700B19D36 /* PandemicPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF60A1152BB0200700B19D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF60A1172BB0200700B19D36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +39,7 @@
 		EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorPresenter.swift; sourceTree = "<group>"; };
 		EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemicDataManager.swift; sourceTree = "<group>"; };
 		EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorModuleAssembly.swift; sourceTree = "<group>"; };
+		EF60A1392BB031D700B19D36 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF1454662BB047900075B665 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EF1454642BB045E10075B665 /* Array+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EF1454672BB066400075B665 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EF1454682BB066740075B665 /* Domain */,
+				EF1454692BB0667E0075B665 /* Utilities */,
+				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		EF1454682BB066740075B665 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A13B2BB031DD00B19D36 /* Models */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		EF1454692BB0667E0075B665 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		EF14546A2BB0674D0075B665 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A11E2BB0200A00B19D36 /* Assets.xcassets */,
+				EF60A1202BB0200A00B19D36 /* LaunchScreen.storyboard */,
+				EF60A1232BB0200A00B19D36 /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		EF60A1092BB0200700B19D36 = {
 			isa = PBXGroup;
 			children = (
@@ -67,13 +117,12 @@
 			isa = PBXGroup;
 			children = (
 				EF60A1302BB02A5B00B19D36 /* Root */,
-				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
+				EF1454672BB066400075B665 /* Core */,
 				EF60A1342BB02D4800B19D36 /* Modules */,
+				EF1454662BB047900075B665 /* Extensions */,
+				EF14546A2BB0674D0075B665 /* SupportingFiles */,
 				EF60A1292BB023F200B19D36 /* .swiftlint.yml */,
 				EF60A12B2BB0243C00B19D36 /* .swiftformat */,
-				EF60A11E2BB0200A00B19D36 /* Assets.xcassets */,
-				EF60A1202BB0200A00B19D36 /* LaunchScreen.storyboard */,
-				EF60A1232BB0200A00B19D36 /* Info.plist */,
 			);
 			path = PandemicPulse;
 			sourceTree = "<group>";
@@ -104,6 +153,14 @@
 				EF60A1312BB02B4300B19D36 /* MonitorModule */,
 			);
 			path = Modules;
+			sourceTree = "<group>";
+		};
+		EF60A13B2BB031DD00B19D36 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A1392BB031D700B19D36 /* Person.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,11 +259,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */,
+				EF1454652BB045E10075B665 /* Array+Extension.swift in Sources */,
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
 				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
 				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,
+				EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */,
 				EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */,
 				EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */,
+				EF60A13A2BB031D700B19D36 /* Person.swift in Sources */,
 				EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,7 +414,7 @@
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PandemicPulse/Info.plist;
+				INFOPLIST_FILE = PandemicPulse/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -387,7 +447,7 @@
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PandemicPulse/Info.plist;
+				INFOPLIST_FILE = PandemicPulse/SupportingFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

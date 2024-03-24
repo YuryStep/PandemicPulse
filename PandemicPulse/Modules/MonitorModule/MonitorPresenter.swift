@@ -7,7 +7,7 @@
 
 protocol MonitorPresenterProtocol {}
 
-class MonitorPresenter {
+final class MonitorPresenter {
     private weak var view: MonitorViewProtocol?
     private var dataManager: AppDataManager
 

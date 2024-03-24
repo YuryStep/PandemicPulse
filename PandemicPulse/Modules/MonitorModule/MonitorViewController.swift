@@ -9,7 +9,7 @@ import UIKit
 
 protocol MonitorViewProtocol: AnyObject {}
 
-class MonitorViewController: UIViewController {
+final class MonitorViewController: UIViewController {
     var presenter: MonitorPresenterProtocol!
 
     override func viewDidLoad() {

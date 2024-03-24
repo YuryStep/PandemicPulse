@@ -9,6 +9,8 @@ import Foundation
 
 protocol AppDataManager {}
 
-class PandemicDataManager {}
+class PandemicDataManager {
+
+}
 
 extension PandemicDataManager: AppDataManager {}

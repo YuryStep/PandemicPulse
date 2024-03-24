@@ -9,4 +9,4 @@ disabled_rules:
 - opening_brace
 - nesting
 
-line_length: 170
+line_length: 190
