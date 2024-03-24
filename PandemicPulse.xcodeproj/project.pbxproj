@@ -12,6 +12,8 @@
 		EF60A11A2BB0200700B19D36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* ViewController.swift */; };
 		EF60A11F2BB0200A00B19D36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF60A11E2BB0200A00B19D36 /* Assets.xcassets */; };
 		EF60A1222BB0200A00B19D36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF60A1202BB0200A00B19D36 /* LaunchScreen.storyboard */; };
+		EF60A12A2BB023F200B19D36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF60A1292BB023F200B19D36 /* .swiftlint.yml */; };
+		EF60A12C2BB0243C00B19D36 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EF60A12B2BB0243C00B19D36 /* .swiftformat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		EF60A11E2BB0200A00B19D36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF60A1212BB0200A00B19D36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF60A1232BB0200A00B19D36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF60A1292BB023F200B19D36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		EF60A12B2BB0243C00B19D36 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 				EF60A1152BB0200700B19D36 /* AppDelegate.swift */,
 				EF60A1172BB0200700B19D36 /* SceneDelegate.swift */,
 				EF60A1192BB0200700B19D36 /* ViewController.swift */,
+				EF60A1292BB023F200B19D36 /* .swiftlint.yml */,
+				EF60A12B2BB0243C00B19D36 /* .swiftformat */,
 				EF60A11E2BB0200A00B19D36 /* Assets.xcassets */,
 				EF60A1202BB0200A00B19D36 /* LaunchScreen.storyboard */,
 				EF60A1232BB0200A00B19D36 /* Info.plist */,
@@ -71,6 +77,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF60A1262BB0200A00B19D36 /* Build configuration list for PBXNativeTarget "PandemicPulse" */;
 			buildPhases = (
+				EF60A12D2BB0246B00B19D36 /* Run Script SwiftLint */,
 				EF60A10E2BB0200700B19D36 /* Sources */,
 				EF60A10F2BB0200700B19D36 /* Frameworks */,
 				EF60A1102BB0200700B19D36 /* Resources */,
@@ -122,12 +129,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF60A12C2BB0243C00B19D36 /* .swiftformat in Resources */,
+				EF60A12A2BB023F200B19D36 /* .swiftlint.yml in Resources */,
 				EF60A1222BB0200A00B19D36 /* LaunchScreen.storyboard in Resources */,
 				EF60A11F2BB0200A00B19D36 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF60A12D2BB0246B00B19D36 /* Run Script SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning SwiftLint not installed, download it from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF60A10E2BB0200700B19D36 /* Sources */ = {
@@ -281,6 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PandemicPulse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -313,6 +345,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FC7PVA7NK7;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PandemicPulse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

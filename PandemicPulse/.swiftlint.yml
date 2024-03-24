@@ -1,0 +1,12 @@
+included:
+- iWeather
+
+excluded:
+- Pods
+
+disabled_rules:
+- todo
+- opening_brace
+- nesting
+
+line_length: 170
