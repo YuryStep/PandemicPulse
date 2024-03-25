@@ -10,3 +10,6 @@ disabled_rules:
 - nesting
 
 line_length: 190
+identifier_name:
+  min_length: 2
+  max_length: 40

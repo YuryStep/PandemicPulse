@@ -9,9 +9,9 @@ import UIKit
 
 enum MonitorModuleAssembly {
     static func makeModule() -> UIViewController {
-        var groupOfPeople = {
+        let groupOfPeople = {
             var group = [Infectable]()
-            for _ in 0...1_000_000 {
+            for _ in 0 ... 1_000_000 {
                 group.append(Person())
             }
             return ThreadSafeMatrix(group)
@@ -19,7 +19,7 @@ enum MonitorModuleAssembly {
 
         let monitorViewController = MonitorViewController()
         let dataManager = PandemicDataManager(riskGroup: groupOfPeople, infectionFactor: 3)
-        let monitorViewPresenter = MonitorPresenter(view: monitorViewController, dataManager: dataManager)
+        let monitorViewPresenter = MonitorPresenter(view: monitorViewController, dataManager: dataManager, infectionUpdateInterval: 1)
         monitorViewController.presenter = monitorViewPresenter
 
         return monitorViewController

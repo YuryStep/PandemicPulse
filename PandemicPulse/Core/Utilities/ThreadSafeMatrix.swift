@@ -10,14 +10,13 @@ import Foundation
 /// Двумерный потокобезопасный массив.
 /// - NOTE: Потокобезопасность обеспечивается за счет использования GCD ConcurrentQueue
 public final class ThreadSafeMatrix<Element> {
-
     private var matrix: [[Element]]
     private let threadSafeConcurrentQueue = DispatchQueue(label: "com.YuryStep.github", attributes: .concurrent)
 
     /// Создает двумерный массив, приближенный по распределению элементов к квадратной матрице
     /// - Parameter matrix: Массив, который необходимо преобразовать в двумерный
     init(_ array: [Element] = [Element]()) {
-        self.matrix = array.splitToSquareMatrix()
+        matrix = array.splitToSquareMatrix()
     }
 
     /// Создает двумерный массив с заданным количеством элементов  в ряду
@@ -25,11 +24,12 @@ public final class ThreadSafeMatrix<Element> {
     ///   - matrix: Массив, который необходимо преобразовать в двумерный
     ///   - elementsInRow: Количество элементов в ряду
     init(_ array: [Element] = [Element](), elementsInRow: Int) {
-        self.matrix = array.split(by: elementsInRow)
+        matrix = array.split(by: elementsInRow)
     }
 }
 
 // MARK: Subscript
+
 extension ThreadSafeMatrix {
     subscript(row: Int, column: Int) -> Element {
         get {
@@ -47,13 +47,13 @@ extension ThreadSafeMatrix {
 
 extension ThreadSafeMatrix: CustomStringConvertible {
     public var description: String {
-        threadSafeConcurrentQueue.sync { return matrix.description }
+        threadSafeConcurrentQueue.sync { matrix.description }
     }
 }
 
 // MARK: - Sequence conformance
-extension ThreadSafeMatrix: Sequence {
 
+extension ThreadSafeMatrix: Sequence {
     public func makeIterator() -> AnyIterator<[Element]> {
         var currentIndex = 0
 
@@ -75,38 +75,38 @@ extension ThreadSafeMatrix: Sequence {
 }
 
 // MARK: Properties
-extension ThreadSafeMatrix {
 
+extension ThreadSafeMatrix {
     var first: [Element]? {
-        threadSafeConcurrentQueue.sync { return matrix.first }
+        threadSafeConcurrentQueue.sync { matrix.first }
     }
 
     var last: [Element]? {
-        threadSafeConcurrentQueue.sync { return matrix.last }
+        threadSafeConcurrentQueue.sync { matrix.last }
     }
 
     var countRows: Int {
-        threadSafeConcurrentQueue.sync { return matrix.count }
+        threadSafeConcurrentQueue.sync { matrix.count }
     }
 
     var countColumns: Int { // TODO: CHECK to delete
-        threadSafeConcurrentQueue.sync { return matrix.first?.count ?? 0 }
+        threadSafeConcurrentQueue.sync { matrix.first?.count ?? 0 }
     }
 
     var isEmpty: Bool {
-        threadSafeConcurrentQueue.sync { return matrix.isEmpty }
+        threadSafeConcurrentQueue.sync { matrix.isEmpty }
     }
 }
 
 // MARK: Regular methods
-extension ThreadSafeMatrix {
 
+extension ThreadSafeMatrix {
     func first(where predicate: ([Element]) -> Bool) -> [Element]? {
-        threadSafeConcurrentQueue.sync { return matrix.first(where: predicate) }
+        threadSafeConcurrentQueue.sync { matrix.first(where: predicate) }
     }
 
     func last(where predicate: ([Element]) -> Bool) -> [Element]? {
-        threadSafeConcurrentQueue.sync { return matrix.last(where: predicate) }
+        threadSafeConcurrentQueue.sync { matrix.last(where: predicate) }
     }
 
 //    func filter(_ isIncluded: @escaping ([Element]) -> Bool) -> ThreadSafeMatrix {
@@ -114,7 +114,7 @@ extension ThreadSafeMatrix {
 //    }
 
     func index(where predicate: ([Element]) -> Bool) -> Int? {
-        threadSafeConcurrentQueue.sync { return matrix.firstIndex(where: predicate) }
+        threadSafeConcurrentQueue.sync { matrix.firstIndex(where: predicate) }
     }
 
 //    func sorted(by areInIncreasingOrder: ([Element], [Element]) -> Bool) -> ThreadSafeMatrix {
@@ -122,37 +122,37 @@ extension ThreadSafeMatrix {
 //    }
 
     func map<TransformedElement>(_ transform: @escaping ([Element]) -> TransformedElement) -> [TransformedElement] {
-        threadSafeConcurrentQueue.sync { return matrix.map(transform) }
+        threadSafeConcurrentQueue.sync { matrix.map(transform) }
     }
 
     func compactMap<TransformedElement>(_ transform: ([Element]) -> TransformedElement?) -> [TransformedElement] {
-        threadSafeConcurrentQueue.sync { return matrix.compactMap(transform) }
+        threadSafeConcurrentQueue.sync { matrix.compactMap(transform) }
     }
 
     func reduce<TransformedElement>(_ initialResult: TransformedElement, _ nextPartialResult: @escaping (TransformedElement, [Element]) -> TransformedElement) -> TransformedElement {
-        threadSafeConcurrentQueue.sync { return matrix.reduce(initialResult, nextPartialResult) }
+        threadSafeConcurrentQueue.sync { matrix.reduce(initialResult, nextPartialResult) }
     }
 
     func reduce<TransformedElement>(into initialResult: TransformedElement, _ updateAccumulatingResult: @escaping (inout TransformedElement, [Element]) -> Void) -> TransformedElement {
-        threadSafeConcurrentQueue.sync { return matrix.reduce(into: initialResult, updateAccumulatingResult) }
+        threadSafeConcurrentQueue.sync { matrix.reduce(into: initialResult, updateAccumulatingResult) }
     }
 
     func forEach(_ body: ([Element]) -> Void) {
-        threadSafeConcurrentQueue.sync { return matrix.forEach(body) }
+        threadSafeConcurrentQueue.sync { matrix.forEach(body) }
     }
 
     func contains(where predicate: ([Element]) -> Bool) -> Bool {
-        threadSafeConcurrentQueue.sync { return matrix.contains(where: predicate) }
+        threadSafeConcurrentQueue.sync { matrix.contains(where: predicate) }
     }
 
     func allSatisfy(_ predicate: ([Element]) -> Bool) -> Bool {
-        threadSafeConcurrentQueue.sync { return matrix.allSatisfy(predicate) }
+        threadSafeConcurrentQueue.sync { matrix.allSatisfy(predicate) }
     }
 }
 
 // MARK: Mutating methods
-extension ThreadSafeMatrix {
 
+extension ThreadSafeMatrix {
     func append(_ element: [Element]) {
         threadSafeConcurrentQueue.async(flags: .barrier) {
             self.matrix.append(element)
@@ -192,7 +192,6 @@ extension ThreadSafeMatrix {
 }
 
 extension ThreadSafeMatrix {
-
     func getNeighborsOfElement(at position: Position) -> [(element: Element, position: Position)] {
         guard matrix[safe: position.row]?[safe: position.column] != nil else {
             // Здесь следует выбрасывать ошибку, если элемент не существует по указанной позиции

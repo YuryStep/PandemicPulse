@@ -9,12 +9,11 @@ import Foundation
 
 protocol AppDataManager {
     func getCurrentRiskGroupState() -> ThreadSafeMatrix<Infectable>
-    func infectElement(atRow: Int, column: Int)
+    func infectElement(at: Position)
     func spreadInfectionInGroup()
 }
 
 class PandemicDataManager: AppDataManager {
-
     private let riskGroup: ThreadSafeMatrix<Infectable>
     private let infectionFactor: Int
 
@@ -29,15 +28,15 @@ class PandemicDataManager: AppDataManager {
         return riskGroup
     }
 
-    func infectElement(atRow row: Int, column: Int) {
-        riskGroup[row, column].isInfected = true
+    func infectElement(at position: Position) {
+        riskGroup[position.row, position.column].isInfected = true
         onCompletion?()
     }
 
     func spreadInfectionInGroup() {
         let infectedPeoplePositions = generatePositionsOfRandomlyInfectedElements()
 
-        infectedPeoplePositions.forEach { position in
+        for position in infectedPeoplePositions {
             riskGroup[position.row, position.column].isInfected = true
         }
         onCompletion?()

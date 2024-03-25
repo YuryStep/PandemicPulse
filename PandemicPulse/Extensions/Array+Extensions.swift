@@ -13,8 +13,8 @@ extension Array {
             return []
         }
 
-        let count = Int.random(in: 0...limit)
-        let shuffledArray = self.shuffled()
+        let count = Int.random(in: 0 ... limit)
+        let shuffledArray = shuffled()
 
         return Array(shuffledArray.prefix(count))
     }
@@ -44,9 +44,9 @@ extension Array {
         }
         var result: [[Element]] = []
 
-        for index in stride(from: 0, to: self.count, by: number) {
-            let endIndex = Swift.min(index + number, self.count)
-            let subArray = Array(self[index..<endIndex])
+        for index in stride(from: 0, to: count, by: number) {
+            let endIndex = Swift.min(index + number, count)
+            let subArray = Array(self[index ..< endIndex])
             result.append(subArray)
         }
 

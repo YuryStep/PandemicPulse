@@ -10,6 +10,12 @@
 		EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */; };
 		EF1454652BB045E10075B665 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454642BB045E10075B665 /* Array+Extensions.swift */; };
 		EF14546C2BB081A00075B665 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF14546B2BB081A00075B665 /* Position.swift */; };
+		EF14546F2BB174460075B665 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF14546E2BB174460075B665 /* UIView+Extensions.swift */; };
+		EF1454712BB175230075B665 /* MonitorCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454702BB175230075B665 /* MonitorCollectionView.swift */; };
+		EF1454732BB175C60075B665 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454722BB175C60075B665 /* PersonCell.swift */; };
+		EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */; };
+		EF1454782BB177C10075B665 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */; };
+		EF14547A2BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454792BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift */; };
 		EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1152BB0200700B19D36 /* AppDelegate.swift */; };
 		EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1172BB0200700B19D36 /* SceneDelegate.swift */; };
 		EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* MonitorViewController.swift */; };
@@ -28,6 +34,12 @@
 		EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeMatrix.swift; sourceTree = "<group>"; };
 		EF1454642BB045E10075B665 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		EF14546B2BB081A00075B665 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
+		EF14546E2BB174460075B665 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		EF1454702BB175230075B665 /* MonitorCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorCollectionView.swift; sourceTree = "<group>"; };
+		EF1454722BB175C60075B665 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
+		EF1454792BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSize+Extensions.swift"; sourceTree = "<group>"; };
 		EF60A1122BB0200700B19D36 /* PandemicPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF60A1152BB0200700B19D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF60A1172BB0200700B19D36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +71,10 @@
 			isa = PBXGroup;
 			children = (
 				EF1454642BB045E10075B665 /* Array+Extensions.swift */,
+				EF14546E2BB174460075B665 /* UIView+Extensions.swift */,
+				EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */,
+				EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */,
+				EF1454792BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -66,7 +82,7 @@
 		EF1454672BB066400075B665 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
+				EF14546D2BB16D630075B665 /* Data */,
 				EF1454682BB066740075B665 /* Domain */,
 				EF1454692BB0667E0075B665 /* Utilities */,
 			);
@@ -97,6 +113,23 @@
 				EF60A1232BB0200A00B19D36 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		EF14546D2BB16D630075B665 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		EF1454742BB175F60075B665 /* MonitorModuleViews */ = {
+			isa = PBXGroup;
+			children = (
+				EF1454702BB175230075B665 /* MonitorCollectionView.swift */,
+				EF1454722BB175C60075B665 /* PersonCell.swift */,
+			);
+			path = MonitorModuleViews;
 			sourceTree = "<group>";
 		};
 		EF60A1092BB0200700B19D36 = {
@@ -145,6 +178,7 @@
 				EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */,
 				EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */,
 				EF60A1192BB0200700B19D36 /* MonitorViewController.swift */,
+				EF1454742BB175F60075B665 /* MonitorModuleViews */,
 			);
 			path = MonitorModule;
 			sourceTree = "<group>";
@@ -261,12 +295,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1454782BB177C10075B665 /* UICollectionViewCell+Extensions.swift in Sources */,
+				EF1454712BB175230075B665 /* MonitorCollectionView.swift in Sources */,
 				EF14546C2BB081A00075B665 /* Position.swift in Sources */,
+				EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */,
 				EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */,
 				EF1454652BB045E10075B665 /* Array+Extensions.swift in Sources */,
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
 				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
+				EF1454732BB175C60075B665 /* PersonCell.swift in Sources */,
+				EF14547A2BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift in Sources */,
 				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,
+				EF14546F2BB174460075B665 /* UIView+Extensions.swift in Sources */,
 				EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */,
 				EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */,
 				EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */,
