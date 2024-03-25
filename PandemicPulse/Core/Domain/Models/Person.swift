@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Person: Hashable {
-    let id = UUID()
+protocol Infectable {
+    var isInfected: Bool { get set }
+}
+
+struct Person: Infectable {
     var isInfected: Bool = false
 }

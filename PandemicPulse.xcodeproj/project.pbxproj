@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */; };
-		EF1454652BB045E10075B665 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454642BB045E10075B665 /* Array+Extension.swift */; };
+		EF1454652BB045E10075B665 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454642BB045E10075B665 /* Array+Extensions.swift */; };
+		EF14546C2BB081A00075B665 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF14546B2BB081A00075B665 /* Position.swift */; };
 		EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1152BB0200700B19D36 /* AppDelegate.swift */; };
 		EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1172BB0200700B19D36 /* SceneDelegate.swift */; };
 		EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* MonitorViewController.swift */; };
@@ -25,7 +26,8 @@
 
 /* Begin PBXFileReference section */
 		EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeMatrix.swift; sourceTree = "<group>"; };
-		EF1454642BB045E10075B665 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		EF1454642BB045E10075B665 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		EF14546B2BB081A00075B665 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		EF60A1122BB0200700B19D36 /* PandemicPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF60A1152BB0200700B19D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF60A1172BB0200700B19D36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,7 +58,7 @@
 		EF1454662BB047900075B665 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EF1454642BB045E10075B665 /* Array+Extension.swift */,
+				EF1454642BB045E10075B665 /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -64,9 +66,9 @@
 		EF1454672BB066400075B665 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
 				EF1454682BB066740075B665 /* Domain */,
 				EF1454692BB0667E0075B665 /* Utilities */,
-				EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				EF60A1392BB031D700B19D36 /* Person.swift */,
+				EF14546B2BB081A00075B665 /* Position.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,8 +261,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF14546C2BB081A00075B665 /* Position.swift in Sources */,
 				EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */,
-				EF1454652BB045E10075B665 /* Array+Extension.swift in Sources */,
+				EF1454652BB045E10075B665 /* Array+Extensions.swift in Sources */,
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
 				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
 				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,

@@ -1,11 +1,30 @@
 //
-//  Array+Extension.swift
+//  Array+Extensions.swift
 //  PandemicPulse
 //
 //  Created by Юрий Степанчук on 24.03.2024.
 //
 
 import Foundation
+
+extension Array {
+    func getRandomElements(limit: Int) -> [Element] {
+        guard limit > 0 else {
+            return []
+        }
+
+        let count = Int.random(in: 0...limit)
+        let shuffledArray = self.shuffled()
+
+        return Array(shuffledArray.prefix(count))
+    }
+}
+
+extension Array {
+    subscript(safe index: Int) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
 
 extension Array {
     /// Преобразует одномерный массив в квадратную (или приближенную к квадратной) матрицу.
