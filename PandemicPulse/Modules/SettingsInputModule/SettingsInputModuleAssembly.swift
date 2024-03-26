@@ -10,6 +10,6 @@ import UIKit
 enum SettingsInputModuleAssembly {
     static func makeModule() -> UIViewController {
         let settingsInputViewController = SettingsInputViewController()
-        return settingsInputViewController.wrappedInNavigationController()
+        return settingsInputViewController
     }
 }

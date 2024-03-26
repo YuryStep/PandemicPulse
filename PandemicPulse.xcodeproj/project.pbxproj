@@ -34,6 +34,8 @@
 		EFE22D5D2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */; };
 		EFE22D5F2BB2D8E8003144A0 /* SettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */; };
 		EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */; };
+		EFE22D642BB2EDD5003144A0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */; };
+		EFE22D662BB2F09F003144A0 /* SettingsModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D652BB2F09F003144A0 /* SettingsModuleCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputModuleAssembly.swift; sourceTree = "<group>"; };
 		EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabel.swift; sourceTree = "<group>"; };
 		EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
+		EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		EFE22D652BB2F09F003144A0 /* SettingsModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 		EF1454672BB066400075B665 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */,
 				EF14546D2BB16D630075B665 /* DataManager */,
 				EF1454682BB066740075B665 /* Domain */,
 				EF1454692BB0667E0075B665 /* Utilities */,
@@ -218,6 +223,7 @@
 		EFE22D5B2BB2CCD1003144A0 /* SettingsInputModule */ = {
 			isa = PBXGroup;
 			children = (
+				EFE22D652BB2F09F003144A0 /* SettingsModuleCoordinator.swift */,
 				EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */,
 				EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */,
 				EFE22D622BB2D94F003144A0 /* SettingsInputModuleViews */,
@@ -341,6 +347,8 @@
 				EF1454652BB045E10075B665 /* Array+Extensions.swift in Sources */,
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
 				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
+				EFE22D642BB2EDD5003144A0 /* AppCoordinator.swift in Sources */,
+				EFE22D662BB2F09F003144A0 /* SettingsModuleCoordinator.swift in Sources */,
 				EF1454732BB175C60075B665 /* PersonCell.swift in Sources */,
 				EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */,
 				EF14547A2BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift in Sources */,
