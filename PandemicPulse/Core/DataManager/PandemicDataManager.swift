@@ -10,7 +10,8 @@ import Foundation
 protocol AppDataManager {
     var onCompletion: (() -> Void)? { get set }
 
-    func getCurrentRiskGroupState() -> ThreadSafeMatrix<Infectable>
+    func getCurrentRiskGroup() -> ThreadSafeMatrix<Infectable>
+    func getCurrentHealthyElementsCount() -> Int
     func infectElement(at: Position)
     func spreadInfectionInGroup()
 }
@@ -19,19 +20,27 @@ class PandemicDataManager: AppDataManager {
     private let riskGroup: ThreadSafeMatrix<Infectable>
     private let infectionFactor: Int
 
+    private var healthyElementsCount: Int
     var onCompletion: (() -> Void)?
 
     init(riskGroup: ThreadSafeMatrix<Infectable>, infectionFactor: Int) {
         self.riskGroup = riskGroup
         self.infectionFactor = infectionFactor
+        healthyElementsCount = riskGroup.countElements
+        print(healthyElementsCount)
     }
 
-    func getCurrentRiskGroupState() -> ThreadSafeMatrix<Infectable> {
+    func getCurrentRiskGroup() -> ThreadSafeMatrix<Infectable> {
         return riskGroup
+    }
+
+    func getCurrentHealthyElementsCount() -> Int {
+        return healthyElementsCount
     }
 
     func infectElement(at position: Position) {
         riskGroup[position.row, position.column].isInfected = true
+        healthyElementsCount -= 1
         onCompletion?()
     }
 
@@ -40,6 +49,7 @@ class PandemicDataManager: AppDataManager {
 
         for position in infectedPeoplePositions {
             riskGroup[position.row, position.column].isInfected = true
+            healthyElementsCount -= 1
         }
         onCompletion?()
     }

@@ -13,7 +13,6 @@ enum MonitorModuleAssembly {
     }
 
     static func makeModule() -> UIViewController {
-
         let riskGroup = makeRiskGroup(count: 112)
 
         let monitorViewController = MonitorViewController()

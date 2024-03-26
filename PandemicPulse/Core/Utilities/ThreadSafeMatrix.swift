@@ -65,6 +65,7 @@ extension ThreadSafeMatrix: CustomStringConvertible {
 }
 
 // MARK: - Sequence conformance
+
 extension ThreadSafeMatrix: Sequence {
     public func makeIterator() -> AnyIterator<[Element]> {
         var currentIndex = 0
@@ -105,6 +106,10 @@ extension ThreadSafeMatrix {
         threadSafeConcurrentQueue.sync { matrix.first?.count ?? 0 }
     }
 
+    var countElements: Int {
+        threadSafeConcurrentQueue.sync { matrix.flatMap { $0 }.count }
+    }
+
     var isEmpty: Bool {
         threadSafeConcurrentQueue.sync { matrix.isEmpty }
     }
@@ -142,8 +147,8 @@ extension ThreadSafeMatrix {
     }
 
     func flatMap<TransformedElement>(_ transform: @escaping (Element) -> [TransformedElement]) -> [TransformedElement] {
-         threadSafeConcurrentQueue.sync { matrix.flatMap { $0 }.flatMap(transform) }
-     }
+        threadSafeConcurrentQueue.sync { matrix.flatMap { $0 }.flatMap(transform) }
+    }
 
     func reduce<TransformedElement>(_ initialResult: TransformedElement, _ nextPartialResult: @escaping (TransformedElement, [Element]) -> TransformedElement) -> TransformedElement {
         threadSafeConcurrentQueue.sync { matrix.reduce(initialResult, nextPartialResult) }

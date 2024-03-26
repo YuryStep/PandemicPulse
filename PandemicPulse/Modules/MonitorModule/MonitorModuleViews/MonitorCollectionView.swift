@@ -14,7 +14,6 @@ protocol MonitorCollectionViewDelegate: AnyObject, UICollectionViewDelegate {
 }
 
 final class MonitorCollectionView: UICollectionView {
-
     enum Section: Hashable {
         case main(id: Int)
     }
@@ -53,14 +52,14 @@ final class MonitorCollectionView: UICollectionView {
 
     private func setLayout() {
         let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(44),
-                                             heightDimension: .fractionalHeight(1.0))
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .absolute(44))
+                                               heightDimension: .absolute(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                         subitems: [item])
-    
+                                                       subitems: [item])
+
         let padding = (UIScreen.main.bounds.width - (44 * 9)) / 2
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: padding)
 
@@ -90,7 +89,7 @@ final class MonitorCollectionView: UICollectionView {
         var snapshot = Snapshot()
         let numberOfSections = monitorCollectionViewDelegate.getNumberOfSections()
 
-        for sectionIndex in 0..<numberOfSections {
+        for sectionIndex in 0 ..< numberOfSections {
             let sectionType = monitorCollectionViewDelegate.getSectionType(for: sectionIndex)
             snapshot.appendSections([sectionType])
 

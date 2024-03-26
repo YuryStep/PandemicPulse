@@ -12,7 +12,6 @@ protocol MonitorViewProtocol: AnyObject {
 }
 
 final class MonitorViewController: UIViewController {
-
     var presenter: MonitorPresenterProtocol!
 
     private lazy var headerView: MonitorHeaderView = {
@@ -23,11 +22,10 @@ final class MonitorViewController: UIViewController {
 
     private lazy var collectionView: MonitorCollectionView = {
         let collectionView = MonitorCollectionView(frame: .zero, delegate: self)
-//        collectionView.minimumZoomScale = 1.0 // Минимальный зум
-//        collectionView.maximumZoomScale = 4.0 // Максимальный зум
+        //        collectionView.minimumZoomScale = 1.0 // Минимальный зум
+        //        collectionView.maximumZoomScale = 4.0 // Максимальный зум
         return collectionView
     }()
-
 
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
@@ -46,15 +44,11 @@ final class MonitorViewController: UIViewController {
 
     private func setupNavigationBar() {
         navigationItem.title = "Pandemic Monitor"
-
-        // Create a UIBarButtonItem with title "Reset"
-          let resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
-
-          // Set the right bar button item
-          navigationItem.rightBarButtonItem = resetButton
+        let resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
+        navigationItem.rightBarButtonItem = resetButton
     }
+
     @objc private func resetButtonTapped() {
-        // Implement the reset functionality here
         print("Reset button tapped")
     }
 
@@ -109,8 +103,7 @@ extension MonitorViewController: MonitorCollectionViewDelegate {
         presenter.getItemsForSection(at: sectionIndex)
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected item: \(indexPath)")
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didTapOnElement(at: indexPath)
     }
 }

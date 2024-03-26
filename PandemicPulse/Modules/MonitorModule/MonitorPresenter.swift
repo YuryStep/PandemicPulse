@@ -19,26 +19,27 @@ protocol MonitorPresenterProtocol {
 final class MonitorPresenter {
     private struct State {
         var riskGroup: ThreadSafeMatrix<Infectable>
+        var healthyElementsCount: Int
 
         init(riskGroup: ThreadSafeMatrix<Infectable>) {
             self.riskGroup = riskGroup
+            healthyElementsCount = riskGroup.countElements
         }
     }
 
     private weak var view: MonitorViewProtocol?
     private var dataManager: AppDataManager
-    private var state: State = State(riskGroup: ThreadSafeMatrix<Infectable>())
+    private var state: State = .init(riskGroup: ThreadSafeMatrix<Infectable>())
 
     private let infectionUpdateInterval: TimeInterval
 
     private lazy var onInfectionSpreadCompletion = { [weak self] in
         guard let self else { return }
-        // updateState
         updateCurrentState()
-        // update UI
         view?.renderUserInterface()
-        // If healthyElementsCount == 0 - Stop Timer
-
+        if state.healthyElementsCount == 0 {
+            stopTimer()
+        }
     }
 
     private var timer: Timer?
@@ -53,7 +54,8 @@ final class MonitorPresenter {
     }
 
     private func updateCurrentState() {
-        state.riskGroup = dataManager.getCurrentRiskGroupState()
+        state.riskGroup = dataManager.getCurrentRiskGroup()
+        state.healthyElementsCount = dataManager.getCurrentHealthyElementsCount()
     }
 
     private func startTimerIfNeeded() {
@@ -85,7 +87,7 @@ extension MonitorPresenter: MonitorPresenterProtocol {
         var items: [MonitorCollectionView.Item] = []
 
         let row = state.riskGroup[sectionIndex]
-        row.forEach { element in
+        for element in row {
             let displayData = PersonCell.DisplayData(isInfected: element.isInfected)
             let item = MonitorCollectionView.Item.person(displayData)
             items.append(item)
@@ -115,6 +117,6 @@ private extension Position {
 
 private extension PersonCell.DisplayData {
     init(person: Person) {
-        self.isInfected = person.isInfected
+        isInfected = person.isInfected
     }
 }
