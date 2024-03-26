@@ -20,6 +20,7 @@ final class MonitorViewController: UIViewController {
 
     private lazy var headerView: MonitorHeaderView = {
         let headerView = MonitorHeaderView()
+        headerView.configure(with: presenter.getHeaderDisplayData())
         headerView.translatesAutoresizingMaskIntoConstraints = false
         return headerView
     }()
@@ -38,10 +39,6 @@ final class MonitorViewController: UIViewController {
         return activityIndicator
     }()
 
-    deinit {
-        print("😀")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -50,12 +47,6 @@ final class MonitorViewController: UIViewController {
 
     private func setupNavigationBar() {
         navigationItem.title = Constants.navigationItemTitleText
-        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.leftBarButtonItem = backButton
-    }
-
-    @objc private func backButtonTapped() {
-        presenter.backButtonTapped()
     }
 
     private func setupView() {
@@ -93,6 +84,7 @@ final class MonitorViewController: UIViewController {
 extension MonitorViewController: MonitorViewProtocol {
     func renderUserInterface() {
         collectionView.applySnapshot(animatingDifferences: false)
+        headerView.configure(with: presenter.getHeaderDisplayData())
     }
 }
 

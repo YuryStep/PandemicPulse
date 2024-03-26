@@ -1,5 +1,5 @@
 //
-//  PersonCell.swift
+//  InfectableItemCell.swift
 //  PandemicPulse
 //
 //  Created by Юрий Степанчук on 25.03.2024.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PersonCell: UICollectionViewCell {
+final class InfectableItemCell: UICollectionViewCell {
     struct DisplayData: Equatable, Hashable {
         let id = UUID()
         let isInfected: Bool

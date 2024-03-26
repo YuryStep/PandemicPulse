@@ -20,7 +20,7 @@ final class MonitorCollectionView: UICollectionView {
     }
 
     enum Item: Hashable {
-        case person(PersonCell.DisplayData)
+        case person(InfectableItemCell.DisplayData)
     }
 
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
@@ -44,7 +44,7 @@ final class MonitorCollectionView: UICollectionView {
     }
 
     private func setupCollection() {
-        register(PersonCell.self)
+        register(InfectableItemCell.self)
         delegate = monitorCollectionViewDelegate
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
@@ -75,7 +75,7 @@ final class MonitorCollectionView: UICollectionView {
 
             switch section {
             case .main:
-                let cell = collectionView.reuse(PersonCell.self, indexPath)
+                let cell = collectionView.reuse(InfectableItemCell.self, indexPath)
                 if case let .person(personCellDisplayData) = itemIdentifier {
                     cell.configure(with: personCellDisplayData)
                 }

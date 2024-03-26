@@ -8,6 +8,11 @@
 import UIKit
 
 final class MonitorHeaderView: UIView {
+    struct DisplayData {
+        let healthyElementsCount: Int
+        let infectedElementsCount: Int
+    }
+
     private enum Constants {
         static let offsetBeforeContent: CGFloat = -10
     }
@@ -21,7 +26,6 @@ final class MonitorHeaderView: UIView {
 
     private lazy var healthyCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "750"
         label.textColor = .systemGreen
         label.textAlignment = .center
         return label
@@ -36,7 +40,6 @@ final class MonitorHeaderView: UIView {
 
     private lazy var infectedCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "93"
         label.textColor = .red
         label.textAlignment = .center
         return label
@@ -88,5 +91,10 @@ final class MonitorHeaderView: UIView {
             mainStackView.topAnchor.constraint(equalTo: topAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: Constants.offsetBeforeContent)
         ])
+    }
+
+    func configure(with displayData: DisplayData) {
+        infectedCountLabel.text = String(displayData.infectedElementsCount)
+        healthyCountLabel.text = String(displayData.healthyElementsCount)
     }
 }

@@ -12,7 +12,7 @@
 		EF14546C2BB081A00075B665 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF14546B2BB081A00075B665 /* Position.swift */; };
 		EF14546F2BB174460075B665 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF14546E2BB174460075B665 /* UIView+Extensions.swift */; };
 		EF1454712BB175230075B665 /* MonitorCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454702BB175230075B665 /* MonitorCollectionView.swift */; };
-		EF1454732BB175C60075B665 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454722BB175C60075B665 /* PersonCell.swift */; };
+		EF1454732BB175C60075B665 /* InfectableItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454722BB175C60075B665 /* InfectableItemCell.swift */; };
 		EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */; };
 		EF1454782BB177C10075B665 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */; };
 		EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1152BB0200700B19D36 /* AppDelegate.swift */; };
@@ -44,7 +44,7 @@
 		EF14546B2BB081A00075B665 /* Position.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		EF14546E2BB174460075B665 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		EF1454702BB175230075B665 /* MonitorCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorCollectionView.swift; sourceTree = "<group>"; };
-		EF1454722BB175C60075B665 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		EF1454722BB175C60075B665 /* InfectableItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfectableItemCell.swift; sourceTree = "<group>"; };
 		EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		EF60A1122BB0200700B19D36 /* PandemicPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,7 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				EF1454702BB175230075B665 /* MonitorCollectionView.swift */,
-				EF1454722BB175C60075B665 /* PersonCell.swift */,
+				EF1454722BB175C60075B665 /* InfectableItemCell.swift */,
 				EF663E422BB1E625005330A6 /* MonitorHeaderView.swift */,
 			);
 			path = MonitorModuleViews;
@@ -357,7 +357,7 @@
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
 				EFE22D642BB2EDD5003144A0 /* AppCoordinator.swift in Sources */,
 				EFE22D662BB2F09F003144A0 /* MainFlowCoordinator.swift in Sources */,
-				EF1454732BB175C60075B665 /* PersonCell.swift in Sources */,
+				EF1454732BB175C60075B665 /* InfectableItemCell.swift in Sources */,
 				EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */,
 				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,
 				EFE22D6E2BB350A4003144A0 /* AppFlow.swift in Sources */,

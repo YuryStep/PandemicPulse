@@ -12,9 +12,8 @@ protocol MonitorPresenterProtocol {
     func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section
     func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item]
     func getNumberOfElementsInRow() -> Int
-
+    func getHeaderDisplayData() -> MonitorHeaderView.DisplayData
     func didTapOnElement(at: IndexPath)
-    func backButtonTapped()
 }
 
 final class MonitorPresenter {
@@ -96,7 +95,7 @@ extension MonitorPresenter: MonitorPresenterProtocol {
 
         let row = state.riskGroup[sectionIndex]
         for element in row {
-            let displayData = PersonCell.DisplayData(isInfected: element.isInfected)
+            let displayData = InfectableItemCell.DisplayData(isInfected: element.isInfected)
             let item = MonitorCollectionView.Item.person(displayData)
             items.append(item)
         }
@@ -107,17 +106,17 @@ extension MonitorPresenter: MonitorPresenterProtocol {
         return state.numberOfElementsInRow
     }
 
+    func getHeaderDisplayData() -> MonitorHeaderView.DisplayData {
+        let infectedElementsCount = state.riskGroup.countElements - state.healthyElementsCount
+        return MonitorHeaderView.DisplayData(healthyElementsCount: state.healthyElementsCount,
+                                      infectedElementsCount: infectedElementsCount)
+    }
+
     func didTapOnElement(at indexPath: IndexPath) {
         dataManager.infectElement(at: Position(indexPath))
         startTimerIfNeeded()
         updateCurrentState()
         view?.renderUserInterface()
-    }
-
-    func backButtonTapped() {
-        stopTimer()
-//        coordinator?.finish()
-        coordinator?.navigationController.popViewController(animated: true)
     }
 }
 
@@ -128,7 +127,7 @@ private extension Position {
     }
 }
 
-private extension PersonCell.DisplayData {
+private extension InfectableItemCell.DisplayData {
     init(person: Person) {
         isInfected = person.isInfected
     }
