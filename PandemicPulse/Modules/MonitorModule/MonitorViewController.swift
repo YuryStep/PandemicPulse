@@ -106,4 +106,8 @@ extension MonitorViewController: MonitorCollectionViewDelegate {
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didTapOnElement(at: indexPath)
     }
+
+    func getNumberOfElementsInRow() -> Int {
+        presenter.getNumberOfElementsInRow()
+    }
 }

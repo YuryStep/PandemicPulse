@@ -49,8 +49,8 @@ extension Array {
     /// - Returns: Двумерный массив.
     /// - NOTE: Количество элементов в последнем подмассиве может быть меньше.
     func split(by number: Int) -> [[Element]] {
-        guard number > 0 else { return [[Element]]()
-        }
+        guard number > 0 else { return [[Element]]() }
+
         var result: [[Element]] = []
 
         for index in stride(from: 0, to: count, by: number) {

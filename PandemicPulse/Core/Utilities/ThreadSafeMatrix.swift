@@ -14,17 +14,18 @@ public final class ThreadSafeMatrix<Element> {
     private let threadSafeConcurrentQueue = DispatchQueue(label: "com.YuryStep.github", attributes: .concurrent)
 
     /// Создает двумерный массив, приближенный по распределению элементов к квадратной матрице
-    /// - Parameter matrix: Массив, который необходимо преобразовать в двумерный
     init(_ array: [Element] = [Element]()) {
         matrix = array.splitToSquareMatrix()
     }
 
     /// Создает двумерный массив с заданным количеством элементов  в ряду
-    /// - Parameters:
-    ///   - matrix: Массив, который необходимо преобразовать в двумерный
-    ///   - elementsInRow: Количество элементов в ряду
     init(_ array: [Element] = [Element](), elementsInRow: Int) {
         matrix = array.split(by: elementsInRow)
+    }
+
+    /// Создает двумерный массив приближенный к квадратной матрице с ограничением по количеству элементов в ряду
+    init(_ array: [Element] = [Element](), maxElementsInRow: Int) {
+        matrix = array.splitToSquareMatrixWith(maxElementsInRow: maxElementsInRow)
     }
 }
 

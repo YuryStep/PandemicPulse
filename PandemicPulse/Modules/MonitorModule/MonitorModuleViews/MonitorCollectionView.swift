@@ -11,6 +11,7 @@ protocol MonitorCollectionViewDelegate: AnyObject, UICollectionViewDelegate {
     func getNumberOfSections() -> Int
     func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section
     func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item]
+    func getNumberOfElementsInRow() -> Int
 }
 
 final class MonitorCollectionView: UICollectionView {
@@ -51,19 +52,17 @@ final class MonitorCollectionView: UICollectionView {
     }
 
     private func setLayout() {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(44),
-                                              heightDimension: .fractionalHeight(1.0))
+        let itemsInRowCount = CGFloat(monitorCollectionViewDelegate.getNumberOfElementsInRow())
+
+        let itemSize = getLayoutSizeToFitItems(count: itemsInRowCount)
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
 
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .absolute(44))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitems: [item])
-
-        let padding = (UIScreen.main.bounds.width - (44 * 9)) / 2
-        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: padding)
+                                               heightDimension: itemSize.heightDimension)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
 
         let layout = UICollectionViewCompositionalLayout(section: section)
 
@@ -99,8 +98,9 @@ final class MonitorCollectionView: UICollectionView {
         monitorDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
-    private func getLayoutSizeToFitItems(count itemsCount: CGFloat, padding: CGFloat, spacing: CGFloat, aspectRatio: CGFloat) -> NSCollectionLayoutSize {
-        let width = (frame.width - spacing) / itemsCount - padding
+    private func getLayoutSizeToFitItems(count itemsCount: CGFloat, aspectRatio: CGFloat = 1) -> NSCollectionLayoutSize {
+        let screenSize = UIScreen.main.bounds.width
+        let width = screenSize / itemsCount
         let height = width / aspectRatio
         let size = NSCollectionLayoutSize(widthDimension: .absolute(width), heightDimension: .absolute(height))
         return size

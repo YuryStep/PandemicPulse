@@ -11,6 +11,7 @@ protocol MonitorPresenterProtocol {
     func getNumberOfSections() -> Int
     func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section
     func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item]
+    func getNumberOfElementsInRow() -> Int
 
     func didTapOnElement(at: IndexPath)
     func resetButtonTapped()
@@ -20,6 +21,10 @@ final class MonitorPresenter {
     private struct State {
         var riskGroup: ThreadSafeMatrix<Infectable>
         var healthyElementsCount: Int
+
+        var numberOfElementsInRow: Int {
+            riskGroup.countColumns
+        }
 
         init(riskGroup: ThreadSafeMatrix<Infectable>) {
             self.riskGroup = riskGroup
@@ -93,6 +98,10 @@ extension MonitorPresenter: MonitorPresenterProtocol {
             items.append(item)
         }
         return items
+    }
+
+    func getNumberOfElementsInRow() -> Int {
+        return state.numberOfElementsInRow
     }
 
     func didTapOnElement(at indexPath: IndexPath) {

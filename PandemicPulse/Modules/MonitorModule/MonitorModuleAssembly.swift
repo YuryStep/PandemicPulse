@@ -24,17 +24,18 @@ enum MonitorModuleAssembly {
     }
 
     private static func makeRiskGroup(count: Int) -> ThreadSafeMatrix<Infectable> {
-        guard count > 0 else { return ThreadSafeMatrix<Infectable>() }
+        guard count > 0 else { return ThreadSafeMatrix<Infectable>() } // TODO: Throw Error
         let rowLimit = calculateMaxRowLengthForDevice()
         let plainGroup = Array(repeating: Person(), count: count)
-        return ThreadSafeMatrix(plainGroup, elementsInRow: rowLimit)
+        return ThreadSafeMatrix(plainGroup, maxElementsInRow: rowLimit)
     }
 
-    /// Расчет максимального количества элементов, которые можно разместить на экране
+    /// Расчет максимального количества элементов, которые можно разместить вплотную
+    /// друг к другу на экране устройства соблюдая рекомендации Apple Human Interface Guidelines
     private static func calculateMaxRowLengthForDevice() -> Int {
         let screenSize = UIScreen.main.bounds.width
         let minimumWidth: CGFloat = Constants.minElementSizeByHIG
-        let maxElementCount = Int(floor(screenSize / minimumWidth))
+        let maxElementCount = Int(floor(screenSize / minimumWidth)) // TODO: Refactor
         return maxElementCount
     }
 }
