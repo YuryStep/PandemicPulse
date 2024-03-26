@@ -1,5 +1,5 @@
 //
-//  SettingsInputViewController.swift
+//  SettingsViewController.swift
 //  PandemicPulse
 //
 //  Created by Юрий Степанчук on 26.03.2024.
@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class SettingsInputViewController: UIViewController {
+protocol SettingsViewProtocol: AnyObject {}
+
+final class SettingsViewController: UIViewController {
     private enum Constants {
         static let mainTitleText = "Настройки моделирования"
         static let groupSizeLabelText = "Количество людей в группе"
@@ -22,6 +24,14 @@ final class SettingsInputViewController: UIViewController {
         static let alertTitleButtonText = "OK"
         static let iconSize: CGFloat = 20
     }
+
+    struct UserInput {
+        let groupSize: Int
+        let infectionFactor: Int
+        let period: Double
+    }
+
+    var presenter: SettingsPresenterProtocol!
 
     private lazy var groupSizeLabel = SettingsLabel(text: Constants.groupSizeLabelText)
     private lazy var groupSizeTextField = SettingsTextField(placeholder: Constants.groupSizeTextFieldPlaceholderText)
@@ -81,15 +91,10 @@ final class SettingsInputViewController: UIViewController {
             showAlert(with: Constants.alertTitle, message: Constants.alertMessage)
             return
         }
-        let simulationViewController = MonitorModuleAssembly.makeModule(
-            groupSize: userInput.groupSize,
-            infectionFactor: userInput.infectionFactor,
-            period: userInput.period
-        )
-        navigationController?.pushViewController(simulationViewController, animated: true)
+        presenter.startSimulationButtonTapped(with: userInput)
     }
 
-    private func validUserInput() -> (groupSize: Int, infectionFactor: Int, period: Double)? {
+    private func validUserInput() -> UserInput? {
         guard let groupSizeString = groupSizeTextField.text,
               let groupSize = Int(groupSizeString),
               groupSize > 0,
@@ -102,7 +107,8 @@ final class SettingsInputViewController: UIViewController {
               let period = Double(periodString),
               period > 0
         else { return nil }
-        return (groupSize, infectionFactor, period)
+        let validUserInput = UserInput(groupSize: groupSize, infectionFactor: infectionFactor, period: period)
+        return validUserInput
     }
 
     private func showAlert(with title: String, message: String) {
@@ -111,3 +117,5 @@ final class SettingsInputViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+extension SettingsViewController: SettingsViewProtocol {}

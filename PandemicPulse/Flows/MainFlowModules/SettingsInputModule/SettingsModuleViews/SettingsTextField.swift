@@ -1,5 +1,5 @@
 //
-//  SettingsLabel.swift
+//  SettingsTextField.swift
 //  PandemicPulse
 //
 //  Created by Юрий Степанчук on 26.03.2024.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class SettingsLabel: UILabel {
-    init(text: String) {
+final class SettingsTextField: UITextField {
+    init(placeholder: String) {
         super.init(frame: .zero)
-        self.text = text
+        self.placeholder = placeholder
         setup()
     }
 
@@ -20,6 +20,7 @@ class SettingsLabel: UILabel {
     }
 
     private func setup() {
+        borderStyle = .roundedRect
         translatesAutoresizingMaskIntoConstraints = false
     }
 }

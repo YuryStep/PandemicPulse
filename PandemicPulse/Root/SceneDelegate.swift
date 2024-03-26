@@ -8,11 +8,6 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    enum Flow {
-        case onboarding
-        case main
-    }
-
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo _: UISceneSession, options _: UIScene.ConnectionOptions) {
@@ -23,9 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
 
-
-        let coordinator = AppCoordinator.shared
-        coordinator.set(navigationController: rootNavigationController)
-        coordinator.start()
+        let coordinator = AppCoordinator(navigationController: rootNavigationController)
+        coordinator.start(.mainFlow)
     }
 }

@@ -14,7 +14,7 @@ protocol MonitorPresenterProtocol {
     func getNumberOfElementsInRow() -> Int
 
     func didTapOnElement(at: IndexPath)
-    func resetButtonTapped()
+    func backButtonTapped()
 }
 
 final class MonitorPresenter {
@@ -33,25 +33,28 @@ final class MonitorPresenter {
     }
 
     private weak var view: MonitorViewProtocol?
+    private var coordinator: IMainFlowCoordinator?
     private var dataManager: AppDataManager
-    private var state: State = .init(riskGroup: ThreadSafeMatrix<Infectable>())
 
+    private var state: State = .init(riskGroup: ThreadSafeMatrix<Infectable>())
     private let infectionUpdateInterval: TimeInterval
+    private var timer: Timer?
+    private var infectionSpreadInitiated = false
 
     private lazy var onInfectionSpreadCompletion = { [weak self] in
         guard let self else { return }
         updateCurrentState()
         view?.renderUserInterface()
-        if state.healthyElementsCount == 0 {
-            stopTimer()
-        }
+        if state.healthyElementsCount == 0 { stopTimer() }
     }
 
-    private var timer: Timer?
-    private var infectionSpreadInitiated = false
-
-    init(view: MonitorViewProtocol, dataManager: AppDataManager, infectionUpdateInterval: TimeInterval) {
+    init(view: MonitorViewProtocol,
+         dataManager: AppDataManager,
+         infectionUpdateInterval: TimeInterval,
+         coordinator: IMainFlowCoordinator)
+    {
         self.view = view
+        self.coordinator = coordinator
         self.dataManager = dataManager
         self.infectionUpdateInterval = infectionUpdateInterval
         self.dataManager.onCompletion = onInfectionSpreadCompletion
@@ -111,9 +114,10 @@ extension MonitorPresenter: MonitorPresenterProtocol {
         view?.renderUserInterface()
     }
 
-    func resetButtonTapped() {
+    func backButtonTapped() {
         stopTimer()
-        // reset
+//        coordinator?.finish()
+        coordinator?.navigationController.popViewController(animated: true)
     }
 }
 

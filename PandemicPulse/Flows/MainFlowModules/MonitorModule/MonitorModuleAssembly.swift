@@ -17,12 +17,12 @@ enum MonitorModuleAssembly {
     ///   - groupSize: Количество людей в моделируемой группе
     ///   - infectionFactor: Количество людей, которое может быть заражено одним человеком при контакте
     ///   - period: Период пересчёта количества заражённых людей в секундах
-    static func makeModule(groupSize: Int, infectionFactor: Int, period: Double) -> UIViewController {
-        let riskGroup = makeRiskGroup(count: groupSize)
+    static func makeModule(coordinator: IMainFlowCoordinator, groupSize: Int, infectionFactor: Int, period: Double) -> UIViewController {
 
+        let riskGroup = makeRiskGroup(count: groupSize)
         let monitorViewController = MonitorViewController()
         let dataManager = PandemicDataManager(riskGroup: riskGroup, infectionFactor: infectionFactor)
-        let monitorViewPresenter = MonitorPresenter(view: monitorViewController, dataManager: dataManager, infectionUpdateInterval: period)
+        let monitorViewPresenter = MonitorPresenter(view: monitorViewController, dataManager: dataManager, infectionUpdateInterval: period, coordinator: coordinator)
         monitorViewController.presenter = monitorViewPresenter
 
         return monitorViewController

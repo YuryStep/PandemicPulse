@@ -26,8 +26,6 @@ final class MonitorViewController: UIViewController {
 
     private lazy var collectionView: MonitorCollectionView = {
         let collectionView = MonitorCollectionView(frame: .zero, delegate: self)
-        //        collectionView.minimumZoomScale = 1.0 // Минимальный зум
-        //        collectionView.maximumZoomScale = 4.0 // Максимальный зум
         return collectionView
     }()
 
@@ -40,6 +38,10 @@ final class MonitorViewController: UIViewController {
         return activityIndicator
     }()
 
+    deinit {
+        print("😀")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -48,12 +50,12 @@ final class MonitorViewController: UIViewController {
 
     private func setupNavigationBar() {
         navigationItem.title = Constants.navigationItemTitleText
-        let resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
-        navigationItem.rightBarButtonItem = resetButton
+        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = backButton
     }
 
-    @objc private func resetButtonTapped() {
-        print("Reset button tapped")
+    @objc private func backButtonTapped() {
+        presenter.backButtonTapped()
     }
 
     private func setupView() {

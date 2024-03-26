@@ -16,7 +16,7 @@ protocol AppDataManager {
     func spreadInfectionInGroup()
 }
 
-class PandemicDataManager: AppDataManager {
+final class PandemicDataManager: AppDataManager {
     private let riskGroup: ThreadSafeMatrix<Infectable>
     private let infectionFactor: Int
 
@@ -27,7 +27,6 @@ class PandemicDataManager: AppDataManager {
         self.riskGroup = riskGroup
         self.infectionFactor = infectionFactor
         healthyElementsCount = riskGroup.countElements
-        print(healthyElementsCount)
     }
 
     func getCurrentRiskGroup() -> ThreadSafeMatrix<Infectable> {

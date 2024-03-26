@@ -15,7 +15,6 @@
 		EF1454732BB175C60075B665 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454722BB175C60075B665 /* PersonCell.swift */; };
 		EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */; };
 		EF1454782BB177C10075B665 /* UICollectionViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */; };
-		EF14547A2BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1454792BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift */; };
 		EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1152BB0200700B19D36 /* AppDelegate.swift */; };
 		EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1172BB0200700B19D36 /* SceneDelegate.swift */; };
 		EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1192BB0200700B19D36 /* MonitorViewController.swift */; };
@@ -23,19 +22,20 @@
 		EF60A1222BB0200A00B19D36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF60A1202BB0200A00B19D36 /* LaunchScreen.storyboard */; };
 		EF60A12A2BB023F200B19D36 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF60A1292BB023F200B19D36 /* .swiftlint.yml */; };
 		EF60A12C2BB0243C00B19D36 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = EF60A12B2BB0243C00B19D36 /* .swiftformat */; };
-		EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A12E2BB0299300B19D36 /* PandemicPulseAssembly.swift */; };
 		EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */; };
 		EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */; };
 		EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */; };
 		EF60A13A2BB031D700B19D36 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1392BB031D700B19D36 /* Person.swift */; };
-		EF663E412BB1E462005330A6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF663E402BB1E462005330A6 /* UIViewController+Extensions.swift */; };
 		EF663E432BB1E625005330A6 /* MonitorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF663E422BB1E625005330A6 /* MonitorHeaderView.swift */; };
-		EFE22D5A2BB2C9B7003144A0 /* SettingsInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */; };
-		EFE22D5D2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */; };
+		EFE22D5A2BB2C9B7003144A0 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D592BB2C9B7003144A0 /* SettingsViewController.swift */; };
+		EFE22D5D2BB2CCF2003144A0 /* SettingsModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5C2BB2CCF2003144A0 /* SettingsModuleAssembly.swift */; };
 		EFE22D5F2BB2D8E8003144A0 /* SettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */; };
 		EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */; };
 		EFE22D642BB2EDD5003144A0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */; };
-		EFE22D662BB2F09F003144A0 /* SettingsModuleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D652BB2F09F003144A0 /* SettingsModuleCoordinator.swift */; };
+		EFE22D662BB2F09F003144A0 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */; };
+		EFE22D6A2BB34882003144A0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D692BB34882003144A0 /* SettingsPresenter.swift */; };
+		EFE22D6C2BB35034003144A0 /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D6B2BB35034003144A0 /* ICoordinator.swift */; };
+		EFE22D6E2BB350A4003144A0 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D6D2BB350A4003144A0 /* AppFlow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,6 @@
 		EF1454722BB175C60075B665 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
 		EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+Extensions.swift"; sourceTree = "<group>"; };
-		EF1454792BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCollectionLayoutSize+Extensions.swift"; sourceTree = "<group>"; };
 		EF60A1122BB0200700B19D36 /* PandemicPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PandemicPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF60A1152BB0200700B19D36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF60A1172BB0200700B19D36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,19 +56,20 @@
 		EF60A1232BB0200A00B19D36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF60A1292BB023F200B19D36 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EF60A12B2BB0243C00B19D36 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
-		EF60A12E2BB0299300B19D36 /* PandemicPulseAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemicPulseAssembly.swift; sourceTree = "<group>"; };
 		EF60A1322BB02C2D00B19D36 /* MonitorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorPresenter.swift; sourceTree = "<group>"; };
 		EF60A1352BB02DBE00B19D36 /* PandemicDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PandemicDataManager.swift; sourceTree = "<group>"; };
 		EF60A1372BB0305300B19D36 /* MonitorModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorModuleAssembly.swift; sourceTree = "<group>"; };
 		EF60A1392BB031D700B19D36 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		EF663E402BB1E462005330A6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		EF663E422BB1E625005330A6 /* MonitorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorHeaderView.swift; sourceTree = "<group>"; };
-		EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputViewController.swift; sourceTree = "<group>"; };
-		EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputModuleAssembly.swift; sourceTree = "<group>"; };
+		EFE22D592BB2C9B7003144A0 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		EFE22D5C2BB2CCF2003144A0 /* SettingsModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleAssembly.swift; sourceTree = "<group>"; };
 		EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabel.swift; sourceTree = "<group>"; };
 		EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 		EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		EFE22D652BB2F09F003144A0 /* SettingsModuleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModuleCoordinator.swift; sourceTree = "<group>"; };
+		EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
+		EFE22D692BB34882003144A0 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		EFE22D6B2BB35034003144A0 /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
+		EFE22D6D2BB350A4003144A0 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +90,6 @@
 				EF14546E2BB174460075B665 /* UIView+Extensions.swift */,
 				EF1454752BB177790075B665 /* UICollectionView+Extensions.swift */,
 				EF1454772BB177C10075B665 /* UICollectionViewCell+Extensions.swift */,
-				EF1454792BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift */,
-				EF663E402BB1E462005330A6 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -99,28 +97,20 @@
 		EF1454672BB066400075B665 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */,
+				EFE22D672BB2FE62003144A0 /* Coordinators */,
 				EF14546D2BB16D630075B665 /* DataManager */,
-				EF1454682BB066740075B665 /* Domain */,
-				EF1454692BB0667E0075B665 /* Utilities */,
+				EF60A13B2BB031DD00B19D36 /* Models */,
+				EF1454692BB0667E0075B665 /* CustomDataStructures */,
 			);
 			path = Core;
 			sourceTree = "<group>";
 		};
-		EF1454682BB066740075B665 /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				EF60A13B2BB031DD00B19D36 /* Models */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		EF1454692BB0667E0075B665 /* Utilities */ = {
+		EF1454692BB0667E0075B665 /* CustomDataStructures */ = {
 			isa = PBXGroup;
 			children = (
 				EF1454622BB040910075B665 /* ThreadSafeMatrix.swift */,
 			);
-			path = Utilities;
+			path = CustomDataStructures;
 			sourceTree = "<group>";
 		};
 		EF14546A2BB0674D0075B665 /* SupportingFiles */ = {
@@ -172,7 +162,7 @@
 			children = (
 				EF60A1302BB02A5B00B19D36 /* Root */,
 				EF1454672BB066400075B665 /* Core */,
-				EF60A1342BB02D4800B19D36 /* Modules */,
+				EFE22D682BB33E95003144A0 /* Flows */,
 				EF1454662BB047900075B665 /* Extensions */,
 				EF14546A2BB0674D0075B665 /* SupportingFiles */,
 				EF60A1292BB023F200B19D36 /* .swiftlint.yml */,
@@ -186,7 +176,7 @@
 			children = (
 				EF60A1152BB0200700B19D36 /* AppDelegate.swift */,
 				EF60A1172BB0200700B19D36 /* SceneDelegate.swift */,
-				EF60A12E2BB0299300B19D36 /* PandemicPulseAssembly.swift */,
+				EFE22D6D2BB350A4003144A0 /* AppFlow.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -202,13 +192,13 @@
 			path = MonitorModule;
 			sourceTree = "<group>";
 		};
-		EF60A1342BB02D4800B19D36 /* Modules */ = {
+		EF60A1342BB02D4800B19D36 /* MainFlowModules */ = {
 			isa = PBXGroup;
 			children = (
 				EFE22D5B2BB2CCD1003144A0 /* SettingsInputModule */,
 				EF60A1312BB02B4300B19D36 /* MonitorModule */,
 			);
-			path = Modules;
+			path = MainFlowModules;
 			sourceTree = "<group>";
 		};
 		EF60A13B2BB031DD00B19D36 /* Models */ = {
@@ -223,21 +213,39 @@
 		EFE22D5B2BB2CCD1003144A0 /* SettingsInputModule */ = {
 			isa = PBXGroup;
 			children = (
-				EFE22D652BB2F09F003144A0 /* SettingsModuleCoordinator.swift */,
-				EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */,
-				EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */,
-				EFE22D622BB2D94F003144A0 /* SettingsInputModuleViews */,
+				EFE22D5C2BB2CCF2003144A0 /* SettingsModuleAssembly.swift */,
+				EFE22D692BB34882003144A0 /* SettingsPresenter.swift */,
+				EFE22D592BB2C9B7003144A0 /* SettingsViewController.swift */,
+				EFE22D622BB2D94F003144A0 /* SettingsModuleViews */,
 			);
 			path = SettingsInputModule;
 			sourceTree = "<group>";
 		};
-		EFE22D622BB2D94F003144A0 /* SettingsInputModuleViews */ = {
+		EFE22D622BB2D94F003144A0 /* SettingsModuleViews */ = {
 			isa = PBXGroup;
 			children = (
 				EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */,
 				EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */,
 			);
-			path = SettingsInputModuleViews;
+			path = SettingsModuleViews;
+			sourceTree = "<group>";
+		};
+		EFE22D672BB2FE62003144A0 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				EFE22D6B2BB35034003144A0 /* ICoordinator.swift */,
+				EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */,
+				EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		EFE22D682BB33E95003144A0 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				EF60A1342BB02D4800B19D36 /* MainFlowModules */,
+			);
+			path = Flows;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,23 +344,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF1454782BB177C10075B665 /* UICollectionViewCell+Extensions.swift in Sources */,
-				EFE22D5A2BB2C9B7003144A0 /* SettingsInputViewController.swift in Sources */,
+				EFE22D5A2BB2C9B7003144A0 /* SettingsViewController.swift in Sources */,
 				EF1454712BB175230075B665 /* MonitorCollectionView.swift in Sources */,
 				EF14546C2BB081A00075B665 /* Position.swift in Sources */,
-				EFE22D5D2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift in Sources */,
+				EFE22D6C2BB35034003144A0 /* ICoordinator.swift in Sources */,
+				EFE22D6A2BB34882003144A0 /* SettingsPresenter.swift in Sources */,
+				EFE22D5D2BB2CCF2003144A0 /* SettingsModuleAssembly.swift in Sources */,
 				EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */,
 				EF663E432BB1E625005330A6 /* MonitorHeaderView.swift in Sources */,
-				EF663E412BB1E462005330A6 /* UIViewController+Extensions.swift in Sources */,
 				EF60A1382BB0305300B19D36 /* MonitorModuleAssembly.swift in Sources */,
 				EF1454652BB045E10075B665 /* Array+Extensions.swift in Sources */,
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
-				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
 				EFE22D642BB2EDD5003144A0 /* AppCoordinator.swift in Sources */,
-				EFE22D662BB2F09F003144A0 /* SettingsModuleCoordinator.swift in Sources */,
+				EFE22D662BB2F09F003144A0 /* MainFlowCoordinator.swift in Sources */,
 				EF1454732BB175C60075B665 /* PersonCell.swift in Sources */,
 				EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */,
-				EF14547A2BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift in Sources */,
 				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,
+				EFE22D6E2BB350A4003144A0 /* AppFlow.swift in Sources */,
 				EF14546F2BB174460075B665 /* UIView+Extensions.swift in Sources */,
 				EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */,
 				EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */,
