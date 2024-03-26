@@ -30,6 +30,10 @@
 		EF60A13A2BB031D700B19D36 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF60A1392BB031D700B19D36 /* Person.swift */; };
 		EF663E412BB1E462005330A6 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF663E402BB1E462005330A6 /* UIViewController+Extensions.swift */; };
 		EF663E432BB1E625005330A6 /* MonitorHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF663E422BB1E625005330A6 /* MonitorHeaderView.swift */; };
+		EFE22D5A2BB2C9B7003144A0 /* SettingsInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */; };
+		EFE22D5D2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */; };
+		EFE22D5F2BB2D8E8003144A0 /* SettingsLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */; };
+		EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		EF60A1392BB031D700B19D36 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		EF663E402BB1E462005330A6 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		EF663E422BB1E625005330A6 /* MonitorHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorHeaderView.swift; sourceTree = "<group>"; };
+		EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputViewController.swift; sourceTree = "<group>"; };
+		EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInputModuleAssembly.swift; sourceTree = "<group>"; };
+		EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLabel.swift; sourceTree = "<group>"; };
+		EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +200,7 @@
 		EF60A1342BB02D4800B19D36 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				EFE22D5B2BB2CCD1003144A0 /* SettingsInputModule */,
 				EF60A1312BB02B4300B19D36 /* MonitorModule */,
 			);
 			path = Modules;
@@ -204,6 +213,25 @@
 				EF14546B2BB081A00075B665 /* Position.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EFE22D5B2BB2CCD1003144A0 /* SettingsInputModule */ = {
+			isa = PBXGroup;
+			children = (
+				EFE22D5C2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift */,
+				EFE22D592BB2C9B7003144A0 /* SettingsInputViewController.swift */,
+				EFE22D622BB2D94F003144A0 /* SettingsInputModuleViews */,
+			);
+			path = SettingsInputModule;
+			sourceTree = "<group>";
+		};
+		EFE22D622BB2D94F003144A0 /* SettingsInputModuleViews */ = {
+			isa = PBXGroup;
+			children = (
+				EFE22D5E2BB2D8E8003144A0 /* SettingsLabel.swift */,
+				EFE22D602BB2D91B003144A0 /* SettingsTextField.swift */,
+			);
+			path = SettingsInputModuleViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,8 +330,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF1454782BB177C10075B665 /* UICollectionViewCell+Extensions.swift in Sources */,
+				EFE22D5A2BB2C9B7003144A0 /* SettingsInputViewController.swift in Sources */,
 				EF1454712BB175230075B665 /* MonitorCollectionView.swift in Sources */,
 				EF14546C2BB081A00075B665 /* Position.swift in Sources */,
+				EFE22D5D2BB2CCF2003144A0 /* SettingsInputModuleAssembly.swift in Sources */,
 				EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */,
 				EF663E432BB1E625005330A6 /* MonitorHeaderView.swift in Sources */,
 				EF663E412BB1E462005330A6 /* UIViewController+Extensions.swift in Sources */,
@@ -312,12 +342,14 @@
 				EF60A1332BB02C2D00B19D36 /* MonitorPresenter.swift in Sources */,
 				EF60A12F2BB0299300B19D36 /* PandemicPulseAssembly.swift in Sources */,
 				EF1454732BB175C60075B665 /* PersonCell.swift in Sources */,
+				EFE22D612BB2D91B003144A0 /* SettingsTextField.swift in Sources */,
 				EF14547A2BB179040075B665 /* NSCollectionLayoutSize+Extensions.swift in Sources */,
 				EF60A1362BB02DBE00B19D36 /* PandemicDataManager.swift in Sources */,
 				EF14546F2BB174460075B665 /* UIView+Extensions.swift in Sources */,
 				EF1454632BB040910075B665 /* ThreadSafeMatrix.swift in Sources */,
 				EF60A11A2BB0200700B19D36 /* MonitorViewController.swift in Sources */,
 				EF60A1162BB0200700B19D36 /* AppDelegate.swift in Sources */,
+				EFE22D5F2BB2D8E8003144A0 /* SettingsLabel.swift in Sources */,
 				EF60A13A2BB031D700B19D36 /* Person.swift in Sources */,
 				EF60A1182BB0200700B19D36 /* SceneDelegate.swift in Sources */,
 			);

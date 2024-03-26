@@ -12,6 +12,10 @@ protocol MonitorViewProtocol: AnyObject {
 }
 
 final class MonitorViewController: UIViewController {
+    private enum Constants {
+        static let navigationItemTitleText = "Симуляция эпидемии"
+    }
+
     var presenter: MonitorPresenterProtocol!
 
     private lazy var headerView: MonitorHeaderView = {
@@ -43,7 +47,7 @@ final class MonitorViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        navigationItem.title = "Pandemic Monitor"
+        navigationItem.title = Constants.navigationItemTitleText
         let resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
         navigationItem.rightBarButtonItem = resetButton
     }
