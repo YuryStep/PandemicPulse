@@ -8,22 +8,15 @@
 import UIKit
 
 protocol MonitorCollectionViewDelegate: AnyObject, UICollectionViewDelegate {
-    func getPersonCellDisplayData() -> [MonitorCollectionView.Item]
+    func getNumberOfSections() -> Int
+    func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section
+    func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item]
 }
 
 final class MonitorCollectionView: UICollectionView {
-    private enum Constants {
-        static let timelineHeaderKind = "timelineHeaderKind"
-        static let cityItemPadding: CGFloat = 25
-        static let cityItemSpacing: CGFloat = 25
-        static let cityItemAspectRatio = 0.8
-        static let timelineItemPadding: CGFloat = 25
-        static let timelineItemSpacing: CGFloat = 25
-        static let timelineItemAspectRatio = 0.75
-    }
 
-    enum Section: Int {
-        case main
+    enum Section: Hashable {
+        case main(id: Int)
     }
 
     enum Item: Hashable {
@@ -32,7 +25,6 @@ final class MonitorCollectionView: UICollectionView {
 
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
-//    private typealias MainHeaderRegistration = UICollectionView.SupplementaryRegistration<MainHeaderView>
 
     private var monitorDataSource: DataSource!
     private var monitorCollectionViewDelegate: MonitorCollectionViewDelegate!
@@ -59,12 +51,29 @@ final class MonitorCollectionView: UICollectionView {
         contentInsetAdjustmentBehavior = .never
     }
 
+    private func setLayout() {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(44),
+                                             heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .absolute(44))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                         subitems: [item])
+    
+        let padding = (UIScreen.main.bounds.width - (44 * 9)) / 2
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: padding, bottom: 0, trailing: padding)
+
+        let section = NSCollectionLayoutSection(group: group)
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        collectionViewLayout = layout
+    }
+
     private func configureDataSource() {
         monitorDataSource = DataSource(collectionView: self) { collectionView, indexPath, itemIdentifier in
-            guard let section = Section(rawValue: indexPath.section) else {
-                assertionFailure("Failed to initialize Section in DataSource")
-                return UICollectionViewCell()
-            }
+            let section = self.monitorDataSource.snapshot().sectionIdentifiers[indexPath.section]
 
             switch section {
             case .main:
@@ -75,102 +84,19 @@ final class MonitorCollectionView: UICollectionView {
                 return cell
             }
         }
-
-//        let supplementaryRegistration = TimelineHeaderRegistration(elementKind: Constants.timelineHeaderKind) { _, _, _ in }
-
-//        monitorDataSource.supplementaryViewProvider = { _, _, index in
-//            self.dequeueConfiguredReusableSupplementary(using: supplementaryRegistration, for: index)
-//        }
-    }
-
-    private func setLayout() {
-        let sectionProvider = { [weak self] (sectionIndex: Int, _: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let self, let section = Section(rawValue: sectionIndex) else {
-                assertionFailure("Failed to initialize Section in SectionProvider")
-                return nil
-            }
-            switch section {
-            case .main: return createMainSectionLayout()
-            }
-        }
-
-        let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-        collectionViewLayout = layout
-    }
-
-//    private func createMainSectionLayout() -> NSCollectionLayoutSection {
-//        // Рассчитываем размеры элемента на основе размера родительской области
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//
-//        // Создаем группу из трёх элементов
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item, item])
-//
-//        // Создаем раздел и устанавливаем промежутки и отступы
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .none // TODO: SCROLLING
-//        section.interGroupSpacing = Constants.timelineItemSpacing
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 0,
-//                                                        leading: Constants.timelineItemPadding,
-//                                                        bottom: 0,
-//                                                        trailing: Constants.timelineItemPadding)
-//
-//        return section
-//    }
-
-    private func createLayout() -> UICollectionViewLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),
-                                             heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                              heightDimension: .fractionalWidth(0.2))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                         subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
-    }
-
-
-    private func createMainSectionLayout() -> NSCollectionLayoutSection {
-        let dynamicSize = getLayoutSizeToFitItems(count: 4,
-                                                  padding: Constants.timelineItemPadding,
-                                                  spacing: Constants.timelineItemSpacing,
-                                                  aspectRatio: Constants.timelineItemAspectRatio)
-
-        let item = NSCollectionLayoutItem(layoutSize: .fitToParent)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: dynamicSize, subitems: [item])
-
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .none // TODO: SCROLLING
-        section.interGroupSpacing = Constants.timelineItemSpacing
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                        leading: Constants.timelineItemPadding,
-                                                        bottom: 0,
-                                                        trailing: Constants.timelineItemPadding)
-
-//        let titleSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-//                                               heightDimension: .estimated(44))
-//        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-//            layoutSize: titleSize,
-//            elementKind: Constants.timelineHeaderKind,
-//            alignment: .topLeading
-//        )
-//        section.boundarySupplementaryItems = [sectionHeader]
-        return section
     }
 
     func applySnapshot(animatingDifferences: Bool) {
-        let personItem = monitorCollectionViewDelegate.getPersonCellDisplayData()
-
         var snapshot = Snapshot()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(personItem, toSection: .main)
+        let numberOfSections = monitorCollectionViewDelegate.getNumberOfSections()
 
+        for sectionIndex in 0..<numberOfSections {
+            let sectionType = monitorCollectionViewDelegate.getSectionType(for: sectionIndex)
+            snapshot.appendSections([sectionType])
+
+            let itemsForSection = monitorCollectionViewDelegate.getItemsForSection(at: sectionIndex)
+            snapshot.appendItems(itemsForSection, toSection: sectionType)
+        }
         monitorDataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 

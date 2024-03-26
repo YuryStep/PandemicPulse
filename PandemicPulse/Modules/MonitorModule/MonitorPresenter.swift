@@ -8,24 +8,37 @@
 import Foundation
 
 protocol MonitorPresenterProtocol {
-    func getPersonCellDisplayData() -> [MonitorCollectionView.Item]
+    func getNumberOfSections() -> Int
+    func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section
+    func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item]
+
     func didTapOnElement(at: IndexPath)
+    func resetButtonTapped()
 }
 
 final class MonitorPresenter {
     private struct State {
-        private var healthyElementsCount: Int
+        var riskGroup: ThreadSafeMatrix<Infectable>
+
+        init(riskGroup: ThreadSafeMatrix<Infectable>) {
+            self.riskGroup = riskGroup
+        }
     }
 
     private weak var view: MonitorViewProtocol?
+    private var dataManager: AppDataManager
+    private var state: State = State(riskGroup: ThreadSafeMatrix<Infectable>())
 
-    private let dataManager: AppDataManager
     private let infectionUpdateInterval: TimeInterval
 
-    private let onInfectionSpreadCompletion = {
+    private lazy var onInfectionSpreadCompletion = { [weak self] in
+        guard let self else { return }
         // updateState
+        updateCurrentState()
         // update UI
+        view?.renderUserInterface()
         // If healthyElementsCount == 0 - Stop Timer
+
     }
 
     private var timer: Timer?
@@ -35,6 +48,12 @@ final class MonitorPresenter {
         self.view = view
         self.dataManager = dataManager
         self.infectionUpdateInterval = infectionUpdateInterval
+        self.dataManager.onCompletion = onInfectionSpreadCompletion
+        updateCurrentState()
+    }
+
+    private func updateCurrentState() {
+        state.riskGroup = dataManager.getCurrentRiskGroupState()
     }
 
     private func startTimerIfNeeded() {
@@ -54,21 +73,36 @@ final class MonitorPresenter {
 }
 
 extension MonitorPresenter: MonitorPresenterProtocol {
-    func getPersonCellDisplayData() -> [MonitorCollectionView.Item] {
-        return [MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: true)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: true)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: false)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: false)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: true)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: false)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: true)),
-                MonitorCollectionView.Item.person(PersonCell.DisplayData(isInfected: false))]
+    func getNumberOfSections() -> Int {
+        return state.riskGroup.countRows
+    }
+
+    func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section {
+        return .main(id: sectionIndex)
+    }
+
+    func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item] {
+        var items: [MonitorCollectionView.Item] = []
+
+        let row = state.riskGroup[sectionIndex]
+        row.forEach { element in
+            let displayData = PersonCell.DisplayData(isInfected: element.isInfected)
+            let item = MonitorCollectionView.Item.person(displayData)
+            items.append(item)
+        }
+        return items
     }
 
     func didTapOnElement(at indexPath: IndexPath) {
-        let elementPosition = Position(indexPath)
-        dataManager.infectElement(at: elementPosition)
+        dataManager.infectElement(at: Position(indexPath))
         startTimerIfNeeded()
+        updateCurrentState()
+        view?.renderUserInterface()
+    }
+
+    func resetButtonTapped() {
+        stopTimer()
+        // reset
     }
 }
 
@@ -76,5 +110,11 @@ private extension Position {
     init(_ indexPath: IndexPath) {
         row = indexPath.section
         column = indexPath.row
+    }
+}
+
+private extension PersonCell.DisplayData {
+    init(person: Person) {
+        self.isInfected = person.isInfected
     }
 }

@@ -27,6 +27,15 @@ extension Array {
 }
 
 extension Array {
+    /// Преобразует одномерный массив в приближенную к квадратной матрицу или с количеством элементов в подмассивах равным лимиту
+    /// - NOTE: Количество элементов в последнем ряду может быть меньше, чем в остальных рядах.
+    /// - Returns: Двумерный массив - приближенный к квадратной матрице.
+    func splitToSquareMatrixWith(maxElementsInRow limit: Int) -> [[Element]] {
+        let calculatedLength = integerPartOfSquareRootRoundedUp()
+        let number = calculatedLength <= limit ? calculatedLength : limit
+        return split(by: number)
+    }
+
     /// Преобразует одномерный массив в квадратную (или приближенную к квадратной) матрицу.
     /// - NOTE: Количество элементов в последнем ряду может быть меньше, чем в остальных рядах.
     /// - Returns: Двумерный массив - приближенный к квадратной матрице.

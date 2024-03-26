@@ -43,6 +43,19 @@ extension ThreadSafeMatrix {
             }
         }
     }
+
+    subscript(row: Int) -> [Element] {
+        get {
+            threadSafeConcurrentQueue.sync {
+                self.matrix[row]
+            }
+        }
+        set {
+            threadSafeConcurrentQueue.async(flags: .barrier) {
+                self.matrix[row] = newValue
+            }
+        }
+    }
 }
 
 extension ThreadSafeMatrix: CustomStringConvertible {
@@ -52,7 +65,6 @@ extension ThreadSafeMatrix: CustomStringConvertible {
 }
 
 // MARK: - Sequence conformance
-
 extension ThreadSafeMatrix: Sequence {
     public func makeIterator() -> AnyIterator<[Element]> {
         var currentIndex = 0
@@ -89,7 +101,7 @@ extension ThreadSafeMatrix {
         threadSafeConcurrentQueue.sync { matrix.count }
     }
 
-    var countColumns: Int { // TODO: CHECK to delete
+    var countColumns: Int {
         threadSafeConcurrentQueue.sync { matrix.first?.count ?? 0 }
     }
 
@@ -128,6 +140,10 @@ extension ThreadSafeMatrix {
     func compactMap<TransformedElement>(_ transform: ([Element]) -> TransformedElement?) -> [TransformedElement] {
         threadSafeConcurrentQueue.sync { matrix.compactMap(transform) }
     }
+
+    func flatMap<TransformedElement>(_ transform: @escaping (Element) -> [TransformedElement]) -> [TransformedElement] {
+         threadSafeConcurrentQueue.sync { matrix.flatMap { $0 }.flatMap(transform) }
+     }
 
     func reduce<TransformedElement>(_ initialResult: TransformedElement, _ nextPartialResult: @escaping (TransformedElement, [Element]) -> TransformedElement) -> TransformedElement {
         threadSafeConcurrentQueue.sync { matrix.reduce(initialResult, nextPartialResult) }

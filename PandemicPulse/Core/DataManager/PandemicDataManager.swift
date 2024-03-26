@@ -8,6 +8,8 @@
 import Foundation
 
 protocol AppDataManager {
+    var onCompletion: (() -> Void)? { get set }
+
     func getCurrentRiskGroupState() -> ThreadSafeMatrix<Infectable>
     func infectElement(at: Position)
     func spreadInfectionInGroup()

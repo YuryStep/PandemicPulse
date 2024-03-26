@@ -11,90 +11,25 @@ protocol MonitorViewProtocol: AnyObject {
     func renderUserInterface()
 }
 
-extension MonitorViewController {
-    enum Section {
-        case main
-    }
-}
-
 final class MonitorViewController: UIViewController {
-
-    // MARK: ds
-    private var collectionView: UICollectionView!
-        private var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
-
-        private let numberOfColumns = 4
-        private let numberOfRows = 5
-
-    private func configureCollectionView() {
-            let layout = UICollectionViewFlowLayout()
-            collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-            collectionView.delegate = self
-            collectionView.backgroundColor = .white
-            collectionView.alwaysBounceVertical = true
-            collectionView.alwaysBounceHorizontal = true
-            collectionView.showsVerticalScrollIndicator = false
-            collectionView.showsHorizontalScrollIndicator = false
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
-
-            view.addSubview(collectionView)
-
-            NSLayoutConstraint.activate([
-                collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-            ])
-
-            let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(_:)))
-            collectionView.addGestureRecognizer(pinchGesture)
-
-            let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-            collectionView.addGestureRecognizer(panGesture)
-        }
-
-        private func configureDataSource() {
-            dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) { collectionView, indexPath, item in
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-                cell.backgroundColor = .systemBlue
-                return cell
-            }
-
-            var initialSnapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-            initialSnapshot.appendSections([.main])
-            initialSnapshot.appendItems(Array(0..<(numberOfRows * numberOfColumns)))
-            dataSource.apply(initialSnapshot, animatingDifferences: false)
-        }
-
-        @objc private func handlePinchGesture(_ gesture: UIPinchGestureRecognizer) {
-            guard gesture.view != nil else { return }
-
-            if gesture.state == .changed {
-                let scale = gesture.scale
-                let transform = CGAffineTransform(scaleX: scale, y: scale)
-                collectionView.transform = transform
-            }
-        }
-
-        @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
-            let translation = gesture.translation(in: collectionView)
-
-            if gesture.state == .changed {
-                collectionView.contentOffset = CGPoint(x: collectionView.contentOffset.x - translation.x, y: collectionView.contentOffset.y - translation.y)
-                gesture.setTranslation(.zero, in: collectionView)
-            }
-        }
-
-
 
     var presenter: MonitorPresenterProtocol!
 
-//    private lazy var collectionView: MonitorCollectionView = {
-//        let collectionView = MonitorCollectionView(frame: .zero, delegate: self)
-//        return collectionView
-//    }()
+    private lazy var headerView: MonitorHeaderView = {
+        let headerView = MonitorHeaderView()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        return headerView
+    }()
 
-    lazy var loadingIndicator: UIActivityIndicatorView = {
+    private lazy var collectionView: MonitorCollectionView = {
+        let collectionView = MonitorCollectionView(frame: .zero, delegate: self)
+//        collectionView.minimumZoomScale = 1.0 // Минимальный зум
+//        collectionView.maximumZoomScale = 4.0 // Максимальный зум
+        return collectionView
+    }()
+
+
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
         let activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.hidesWhenStopped = true
@@ -105,19 +40,35 @@ final class MonitorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupNavigationBar()
+        setupNavigationBar()
         setupView()
-//        showLoadingIndicator()
-        hideLoadingIndicator()
+    }
+
+    private func setupNavigationBar() {
+        navigationItem.title = "Pandemic Monitor"
+
+        // Create a UIBarButtonItem with title "Reset"
+          let resetButton = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
+
+          // Set the right bar button item
+          navigationItem.rightBarButtonItem = resetButton
+    }
+    @objc private func resetButtonTapped() {
+        // Implement the reset functionality here
+        print("Reset button tapped")
     }
 
     private func setupView() {
         view.backgroundColor = .systemGray6
-        view.addSubviews([collectionView, loadingIndicator])
+        view.addSubviews([headerView, collectionView, loadingIndicator])
         let guide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.topAnchor.constraint(equalTo: guide.topAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: guide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
@@ -141,12 +92,25 @@ final class MonitorViewController: UIViewController {
 
 extension MonitorViewController: MonitorViewProtocol {
     func renderUserInterface() {
-        print("updateSnapshot")
+        collectionView.applySnapshot(animatingDifferences: false)
     }
 }
 
 extension MonitorViewController: MonitorCollectionViewDelegate {
-    func getPersonCellDisplayData() -> [MonitorCollectionView.Item] {
-        presenter.getPersonCellDisplayData()
+    func getNumberOfSections() -> Int {
+        presenter.getNumberOfSections()
+    }
+
+    func getSectionType(for sectionIndex: Int) -> MonitorCollectionView.Section {
+        presenter.getSectionType(for: sectionIndex)
+    }
+
+    func getItemsForSection(at sectionIndex: Int) -> [MonitorCollectionView.Item] {
+        presenter.getItemsForSection(at: sectionIndex)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected item: \(indexPath)")
+        presenter.didTapOnElement(at: indexPath)
     }
 }
