@@ -15,11 +15,15 @@ final class MonitorHeaderView: UIView {
 
     private enum Constants {
         static let offsetBeforeContent: CGFloat = -10
+        static let defaultStackSpacing: CGFloat = 8
+        static let mainStackSpacing: CGFloat = 16
+        static let healthyLabelText = "Healthy"
+        static let infectedLabelText = "Infected"
     }
 
     private lazy var healthyLabel: UILabel = {
         let label = UILabel()
-        label.text = "Healthy"
+        label.text = Constants.healthyLabelText
         label.textAlignment = .center
         return label
     }()
@@ -33,7 +37,7 @@ final class MonitorHeaderView: UIView {
 
     private lazy var infectedLabel: UILabel = {
         let label = UILabel()
-        label.text = "Infected"
+        label.text = Constants.infectedLabelText
         label.textAlignment = .center
         return label
     }()
@@ -48,16 +52,16 @@ final class MonitorHeaderView: UIView {
     private lazy var healthyStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [healthyLabel, healthyCountLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.alignment = .center // Выравнивание по центру
+        stackView.spacing = Constants.defaultStackSpacing
+        stackView.alignment = .center
         return stackView
     }()
 
     private lazy var infectedStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [infectedLabel, infectedCountLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.alignment = .center // Выравнивание по центру
+        stackView.spacing = Constants.defaultStackSpacing
+        stackView.alignment = .center
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -65,9 +69,10 @@ final class MonitorHeaderView: UIView {
     private lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [healthyLabel, healthyCountLabel, infectedLabel, infectedCountLabel])
         stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .center // Выравнивание по центру
+        stackView.spacing = Constants.mainStackSpacing
+        stackView.alignment = .center
         stackView.distribution = .equalCentering
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -84,7 +89,6 @@ final class MonitorHeaderView: UIView {
     private func setupSubviews() {
         addSubview(mainStackView)
 
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
