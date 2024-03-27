@@ -8,10 +8,10 @@
 import UIKit
 
 final class SettingsTextField: UITextField {
-    init(placeholder: String) {
+    init(placeholder: String, keyboard: UIKeyboardType = .numberPad) {
         super.init(frame: .zero)
         self.placeholder = placeholder
-        setup()
+        setup(withKeyboardType: keyboard)
     }
 
     @available(*, unavailable)
@@ -19,8 +19,9 @@ final class SettingsTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setup() {
+    private func setup(withKeyboardType type: UIKeyboardType) {
         borderStyle = .roundedRect
         translatesAutoresizingMaskIntoConstraints = false
+        keyboardType = type
     }
 }
