@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-protocol IAppCoordinator: ICoordinator {
+protocol AppCoordinatorProtocol: CoordinatorProtocol {
     func performMainFlow()
 }
 
-final class AppCoordinator: IAppCoordinator {
-    var childCoordinators: [ICoordinator] = []
+final class AppCoordinator: AppCoordinatorProtocol {
+    var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
-    var finishDelegate: ICoordinatorFinishDelegate?
+    var finishDelegate: CoordinatorProtocolFinishDelegate?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

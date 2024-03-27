@@ -34,7 +34,7 @@
 		EFE22D642BB2EDD5003144A0 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */; };
 		EFE22D662BB2F09F003144A0 /* MainFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */; };
 		EFE22D6A2BB34882003144A0 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D692BB34882003144A0 /* SettingsPresenter.swift */; };
-		EFE22D6C2BB35034003144A0 /* ICoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D6B2BB35034003144A0 /* ICoordinator.swift */; };
+		EFE22D6C2BB35034003144A0 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D6B2BB35034003144A0 /* CoordinatorProtocol.swift */; };
 		EFE22D6E2BB350A4003144A0 /* AppFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE22D6D2BB350A4003144A0 /* AppFlow.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +68,7 @@
 		EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowCoordinator.swift; sourceTree = "<group>"; };
 		EFE22D692BB34882003144A0 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
-		EFE22D6B2BB35034003144A0 /* ICoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoordinator.swift; sourceTree = "<group>"; };
+		EFE22D6B2BB35034003144A0 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		EFE22D6D2BB350A4003144A0 /* AppFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -233,7 +233,7 @@
 		EFE22D672BB2FE62003144A0 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				EFE22D6B2BB35034003144A0 /* ICoordinator.swift */,
+				EFE22D6B2BB35034003144A0 /* CoordinatorProtocol.swift */,
 				EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */,
 				EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */,
 			);
@@ -347,7 +347,7 @@
 				EFE22D5A2BB2C9B7003144A0 /* SettingsViewController.swift in Sources */,
 				EF1454712BB175230075B665 /* MonitorCollectionView.swift in Sources */,
 				EF14546C2BB081A00075B665 /* Position.swift in Sources */,
-				EFE22D6C2BB35034003144A0 /* ICoordinator.swift in Sources */,
+				EFE22D6C2BB35034003144A0 /* CoordinatorProtocol.swift in Sources */,
 				EFE22D6A2BB34882003144A0 /* SettingsPresenter.swift in Sources */,
 				EFE22D5D2BB2CCF2003144A0 /* SettingsModuleAssembly.swift in Sources */,
 				EF1454762BB177790075B665 /* UICollectionView+Extensions.swift in Sources */,

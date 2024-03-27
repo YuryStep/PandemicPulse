@@ -11,20 +11,22 @@ protocol SettingsPresenterProtocol {
     func startSimulationButtonTapped(with: SettingsViewController.UserInput)
 }
 
+protocol SettingsPresenterDelegateProtocol: AnyObject {
+    func startSimulationButtonTapped(with: SettingsViewController.UserInput)
+}
+
 final class SettingsPresenter {
     private weak var view: SettingsViewProtocol?
-    private var coordinator: IMainFlowCoordinator
+    private weak var delegate: SettingsPresenterDelegateProtocol?
 
-    init(view: SettingsViewProtocol, coordinator: IMainFlowCoordinator) {
+    init(view: SettingsViewProtocol, delegate: SettingsPresenterDelegateProtocol) {
         self.view = view
-        self.coordinator = coordinator
+        self.delegate = delegate
     }
 }
 
 extension SettingsPresenter: SettingsPresenterProtocol {
     func startSimulationButtonTapped(with userInput: SettingsViewController.UserInput) {
-        coordinator.showMonitorScene(groupSize: userInput.groupSize,
-                                     infectionFactor: userInput.infectionFactor,
-                                     period: userInput.period)
+        delegate?.startSimulationButtonTapped(with: userInput)
     }
 }

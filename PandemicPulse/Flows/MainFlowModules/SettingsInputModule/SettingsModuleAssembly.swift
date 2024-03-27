@@ -8,9 +8,9 @@
 import UIKit
 
 enum SettingsModuleAssembly {
-    static func makeModule(coordinator: IMainFlowCoordinator) -> UIViewController {
+    static func makeModule(withPresenterDelegate delegate: SettingsPresenterDelegateProtocol) -> UIViewController {
         let settingsViewController = SettingsViewController()
-        let presenter = SettingsPresenter(view: settingsViewController, coordinator: coordinator)
+        let presenter = SettingsPresenter(view: settingsViewController, delegate: delegate)
         settingsViewController.presenter = presenter
         return settingsViewController
     }

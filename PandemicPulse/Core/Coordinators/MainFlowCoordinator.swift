@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol IMainFlowCoordinator: ICoordinator {
+protocol IMainFlowCoordinator: CoordinatorProtocol {
     func showSettingsInputScene()
     func showMonitorScene(groupSize: Int, infectionFactor: Int, period: Double)
 }
 
 final class MainFlowCoordinator: IMainFlowCoordinator {
-    var childCoordinators: [ICoordinator] = []
+    var childCoordinators: [CoordinatorProtocol] = []
     var navigationController: UINavigationController
-    var finishDelegate: ICoordinatorFinishDelegate?
+    var finishDelegate: CoordinatorProtocolFinishDelegate?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -26,13 +26,13 @@ final class MainFlowCoordinator: IMainFlowCoordinator {
     }
 
     func showSettingsInputScene() {
-        let viewController = SettingsModuleAssembly.makeModule(coordinator: self)
+        let viewController = SettingsModuleAssembly.makeModule(withPresenterDelegate: self)
         navigationController.pushViewController(viewController, animated: true)
     }
 
     func showMonitorScene(groupSize: Int, infectionFactor: Int, period: Double) {
         let viewController = MonitorModuleAssembly.makeModule(
-            coordinator: self,
+            withPresenterDelegate: self,
             groupSize: groupSize,
             infectionFactor: infectionFactor,
             period: period
@@ -40,3 +40,14 @@ final class MainFlowCoordinator: IMainFlowCoordinator {
         navigationController.pushViewController(viewController, animated: true)
     }
 }
+
+extension MainFlowCoordinator: SettingsPresenterDelegateProtocol {
+    func startSimulationButtonTapped(with userInput: SettingsViewController.UserInput) {
+        showMonitorScene(
+            groupSize: userInput.groupSize,
+            infectionFactor: userInput.infectionFactor,
+            period: userInput.period)
+    }
+}
+
+extension MainFlowCoordinator: MonitorPresenterDelegateProtocol { }

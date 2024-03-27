@@ -16,6 +16,10 @@ protocol MonitorPresenterProtocol {
     func didTapOnElement(at: IndexPath)
 }
 
+protocol MonitorPresenterDelegateProtocol: AnyObject {
+//    func stopSimulation()
+}
+
 final class MonitorPresenter {
     private struct State {
         var riskGroup: ThreadSafeMatrix<Infectable>
@@ -32,7 +36,7 @@ final class MonitorPresenter {
     }
 
     private weak var view: MonitorViewProtocol?
-    private var coordinator: IMainFlowCoordinator?
+    private weak var delegate: MonitorPresenterDelegateProtocol?
     private var dataManager: AppDataManager
 
     private var state: State = .init(riskGroup: ThreadSafeMatrix<Infectable>())
@@ -50,10 +54,10 @@ final class MonitorPresenter {
     init(view: MonitorViewProtocol,
          dataManager: AppDataManager,
          infectionUpdateInterval: TimeInterval,
-         coordinator: IMainFlowCoordinator)
+         delegate: MonitorPresenterDelegateProtocol)
     {
         self.view = view
-        self.coordinator = coordinator
+        self.delegate = delegate
         self.dataManager = dataManager
         self.infectionUpdateInterval = infectionUpdateInterval
         self.dataManager.onCompletion = onInfectionSpreadCompletion
