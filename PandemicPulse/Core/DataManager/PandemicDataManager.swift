@@ -20,7 +20,11 @@ final class PandemicDataManager: PandemicDataManagerProtocol {
     private var riskGroup: ThreadSafeMatrix<Infectable>
     private let infectionFactor: Int
 
-    private var healthyElementsCount: Int
+    private var healthyElementsCount: Int {
+        let elements = riskGroup.flatMap { $0 }
+        return elements.filter { !$0.isInfected }.count
+    }
+
     private var potentialInfectionSpreadersPositions: Set<Position> = []
 
     var onCompletion: (() -> Void)?
@@ -28,7 +32,6 @@ final class PandemicDataManager: PandemicDataManagerProtocol {
     init(riskGroup: ThreadSafeMatrix<Infectable>, infectionFactor: Int) {
         self.riskGroup = riskGroup
         self.infectionFactor = infectionFactor
-        healthyElementsCount = riskGroup.countElements
     }
 
     func getCurrentRiskGroup() -> ThreadSafeMatrix<Infectable> {
@@ -42,7 +45,6 @@ final class PandemicDataManager: PandemicDataManagerProtocol {
     func infectElement(at position: Position) {
         riskGroup[position.row, position.column].isInfected = true
         potentialInfectionSpreadersPositions.insert(position)
-        healthyElementsCount -= 1
         onCompletion?()
     }
 
@@ -53,8 +55,6 @@ final class PandemicDataManager: PandemicDataManagerProtocol {
         for position in justInfectedPeoplePositions {
             // Точечно "инфицируем" полученный элемент
             riskGroup[position.row, position.column].isInfected = true
-            // Уменьшаем счетчик здоровых элементов
-            healthyElementsCount -= 1
         }
         // Добавляем позиции только что зараженных элементов в множество потенциальных распространителей инфекции
         potentialInfectionSpreadersPositions = potentialInfectionSpreadersPositions.union(justInfectedPeoplePositions)
@@ -62,7 +62,7 @@ final class PandemicDataManager: PandemicDataManagerProtocol {
     }
 
     /// Генерирует рандомное множество  элементов из здоровых элементов, соседствующих с инфицированными.
-    /// Удаляет из множества потенциальных распростарнителей инфекции - тех, у кого не здоровых соседей.
+    /// Удаляет из множества потенциальных распространителей инфекции - тех, у кого нет здоровых соседей.
     private func generatePositionsOfRandomlyInfectedElements() -> Set<Position> {
         var newInfectionSpreaders: Set<Position> = []
 
@@ -71,7 +71,7 @@ final class PandemicDataManager: PandemicDataManagerProtocol {
             let elementNeighbors = riskGroup.getNeighborsOfElement(at: position)
             // Получаем всех здоровых соседей
             let healthyNeighbors = elementNeighbors.filter { !$0.element.isInfected }
-            // Если здоровых соседей (котрых потенциально можно заразить) нет - удалить элемент из множества
+            // Если здоровых соседей (которых потенциально можно заразить) нет - удалить элемент из множества
             if healthyNeighbors.isEmpty {
                 potentialInfectionSpreadersPositions.remove(position)
                 // Если здоровые соседи есть

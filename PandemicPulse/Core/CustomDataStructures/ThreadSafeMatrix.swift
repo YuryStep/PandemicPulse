@@ -22,7 +22,7 @@ public final class ThreadSafeMatrix<Element> {
         matrix = array.split(by: elementsInRow)
     }
 
-    /// Создает двумерный массив приближенный к квадратной матрице с ограничением по количеству элементов в ряду
+    /// Создает двумерный массив, приближенный к квадратной матрице с ограничением по количеству элементов в ряду
     init(_ array: [Element] = [Element](), maxElementsInRow: Int) {
         matrix = array.splitToSquareMatrixWith(maxElementsInRow: maxElementsInRow)
     }
@@ -208,7 +208,7 @@ extension ThreadSafeMatrix {
 
 extension ThreadSafeMatrix {
     /// Получение всех соседних элементов с адресами относительного заданной позиции.
-    /// - Parameter position: Позиция элемента, у которого необзодимо найти соседние элементы
+    /// - Parameter position: Позиция элемента, у которого необходимо найти соседние элементы
     func getNeighborsOfElement(at position: Position) -> [(element: Element, position: Position)] {
         guard matrix[safe: position.row]?[safe: position.column] != nil else {
             fatalError("Element at position \(position) does not exist")
