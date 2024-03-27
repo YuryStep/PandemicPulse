@@ -8,7 +8,6 @@
 import Foundation
 
 /// Двумерный потокобезопасный массив.
-/// - NOTE: Потокобезопасность обеспечивается за счет использования GCD ConcurrentQueue
 public final class ThreadSafeMatrix<Element> {
     private var matrix: [[Element]]
     private let threadSafeConcurrentQueue = DispatchQueue(label: "com.YuryStep.github", attributes: .concurrent)
@@ -29,7 +28,7 @@ public final class ThreadSafeMatrix<Element> {
     }
 }
 
-// MARK: Subscript
+// MARK: Subscripts
 
 extension ThreadSafeMatrix {
     subscript(row: Int, column: Int) -> Element {
@@ -58,6 +57,8 @@ extension ThreadSafeMatrix {
         }
     }
 }
+
+// MARK: - CustomStringConvertible conformance
 
 extension ThreadSafeMatrix: CustomStringConvertible {
     public var description: String {
@@ -127,17 +128,9 @@ extension ThreadSafeMatrix {
         threadSafeConcurrentQueue.sync { matrix.last(where: predicate) }
     }
 
-//    func filter(_ isIncluded: @escaping ([Element]) -> Bool) -> ThreadSafeMatrix {
-//        threadSafeConcurrentQueue.sync { return ThreadSafeMatrix(matrix.filter(isIncluded)) }
-//    }
-
     func index(where predicate: ([Element]) -> Bool) -> Int? {
         threadSafeConcurrentQueue.sync { matrix.firstIndex(where: predicate) }
     }
-
-//    func sorted(by areInIncreasingOrder: ([Element], [Element]) -> Bool) -> ThreadSafeMatrix {
-//        threadSafeConcurrentQueue.sync { return ThreadSafeMatrix(matrix.sorted(by: areInIncreasingOrder)) }
-//    }
 
     func map<TransformedElement>(_ transform: @escaping ([Element]) -> TransformedElement) -> [TransformedElement] {
         threadSafeConcurrentQueue.sync { matrix.map(transform) }
@@ -214,11 +207,13 @@ extension ThreadSafeMatrix {
 }
 
 extension ThreadSafeMatrix {
+    /// Получение всех соседних элементов с адресами относительного заданной позиции.
+    /// - Parameter position: Позиция элемента, у которого необзодимо найти соседние элементы
     func getNeighborsOfElement(at position: Position) -> [(element: Element, position: Position)] {
         guard matrix[safe: position.row]?[safe: position.column] != nil else {
-            // Здесь следует выбрасывать ошибку, если элемент не существует по указанной позиции
             fatalError("Element at position \(position) does not exist")
         }
+
         let rows = matrix.count
         let columns = matrix[0].count
         var neighbors = [(Element, Position)]()

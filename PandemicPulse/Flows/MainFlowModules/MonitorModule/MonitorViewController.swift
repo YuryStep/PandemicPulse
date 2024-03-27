@@ -30,15 +30,6 @@ final class MonitorViewController: UIViewController {
         return collectionView
     }()
 
-    private lazy var loadingIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .systemPink
-        activityIndicator.style = .large
-        return activityIndicator
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
@@ -47,11 +38,17 @@ final class MonitorViewController: UIViewController {
 
     private func setupNavigationBar() {
         navigationItem.title = Constants.navigationItemTitleText
+        let backButton = UIBarButtonItem(title: "Назад", style: .plain, target: self, action: #selector(didTapOnBackButton))
+        navigationItem.leftBarButtonItem = backButton
+    }
+
+    @objc private func didTapOnBackButton() {
+        presenter.didTapOnBackButton()
     }
 
     private func setupView() {
         view.backgroundColor = .systemGray6
-        view.addSubviews([headerView, collectionView, loadingIndicator])
+        view.addSubviews([headerView, collectionView])
         let guide = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -61,23 +58,8 @@ final class MonitorViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-
-    private func showLoadingIndicator() {
-        collectionView.isHidden = true
-        loadingIndicator.isHidden = false
-        loadingIndicator.startAnimating()
-    }
-
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-        loadingIndicator.isHidden = true
-        collectionView.isHidden = false
     }
 }
 

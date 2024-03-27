@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AppDataManager {
+protocol PandemicDataManagerProtocol: AnyObject {
     var onCompletion: (() -> Void)? { get set }
 
     func getCurrentRiskGroup() -> ThreadSafeMatrix<Infectable>
@@ -16,8 +16,8 @@ protocol AppDataManager {
     func spreadInfectionInGroup()
 }
 
-final class PandemicDataManager: AppDataManager {
-    private let riskGroup: ThreadSafeMatrix<Infectable>
+final class PandemicDataManager: PandemicDataManagerProtocol {
+    private var riskGroup: ThreadSafeMatrix<Infectable>
     private let infectionFactor: Int
 
     private var healthyElementsCount: Int
@@ -46,6 +46,7 @@ final class PandemicDataManager: AppDataManager {
         onCompletion?()
     }
 
+    /// Помечает инфицированными рандомно выбранную часть здоровых элементов, находящихся рядом с больными
     func spreadInfectionInGroup() {
         let justInfectedPeoplePositions = generatePositionsOfRandomlyInfectedElements()
 

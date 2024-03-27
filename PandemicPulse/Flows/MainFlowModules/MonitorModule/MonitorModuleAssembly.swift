@@ -20,8 +20,8 @@ enum MonitorModuleAssembly {
     static func makeModule(withPresenterDelegate delegate: MonitorPresenterDelegateProtocol,
                            groupSize: Int,
                            infectionFactor: Int,
-                           period: Double) -> UIViewController {
-
+                           period: Double) -> UIViewController
+    {
         let riskGroup = makeRiskGroup(count: groupSize)
         let monitorViewController = MonitorViewController()
         let dataManager = PandemicDataManager(riskGroup: riskGroup, infectionFactor: infectionFactor)
@@ -32,7 +32,7 @@ enum MonitorModuleAssembly {
     }
 
     private static func makeRiskGroup(count: Int) -> ThreadSafeMatrix<Infectable> {
-        guard count > 0 else { return ThreadSafeMatrix<Infectable>() } // TODO: Throw Error
+        guard count > 0 else { return ThreadSafeMatrix<Infectable>() }
         let rowLimit = calculateMaxRowLengthForDevice()
         let plainGroup = Array(repeating: Person(), count: count)
         return ThreadSafeMatrix(plainGroup, maxElementsInRow: rowLimit)
@@ -43,7 +43,7 @@ enum MonitorModuleAssembly {
     private static func calculateMaxRowLengthForDevice() -> Int {
         let screenSize = UIScreen.main.bounds.width
         let minimumWidth: CGFloat = Constants.minElementSizeByHIG
-        let maxElementCount = Int(floor(screenSize / minimumWidth)) // TODO: Refactor
+        let maxElementCount = Int(floor(screenSize / minimumWidth))
         return maxElementCount
     }
 }

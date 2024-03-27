@@ -27,7 +27,7 @@ final class MonitorCollectionView: UICollectionView {
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
 
     private var monitorDataSource: DataSource!
-    private var monitorCollectionViewDelegate: MonitorCollectionViewDelegate!
+    private weak var monitorCollectionViewDelegate: MonitorCollectionViewDelegate!
 
     init(frame: CGRect, delegate: MonitorCollectionViewDelegate) {
         super.init(frame: frame, collectionViewLayout: UICollectionViewLayout())

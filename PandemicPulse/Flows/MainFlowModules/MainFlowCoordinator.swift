@@ -46,8 +46,13 @@ extension MainFlowCoordinator: SettingsPresenterDelegateProtocol {
         showMonitorScene(
             groupSize: userInput.groupSize,
             infectionFactor: userInput.infectionFactor,
-            period: userInput.period)
+            period: userInput.period
+        )
     }
 }
 
-extension MainFlowCoordinator: MonitorPresenterDelegateProtocol { }
+extension MainFlowCoordinator: MonitorPresenterDelegateProtocol {
+    func didTapOnBackButton() {
+        navigationController.popViewController(animated: true)
+    }
+}

@@ -14,10 +14,11 @@ protocol MonitorPresenterProtocol {
     func getNumberOfElementsInRow() -> Int
     func getHeaderDisplayData() -> MonitorHeaderView.DisplayData
     func didTapOnElement(at: IndexPath)
+    func didTapOnBackButton()
 }
 
 protocol MonitorPresenterDelegateProtocol: AnyObject {
-//    func stopSimulation()
+    func didTapOnBackButton()
 }
 
 final class MonitorPresenter {
@@ -37,7 +38,7 @@ final class MonitorPresenter {
 
     private weak var view: MonitorViewProtocol?
     private weak var delegate: MonitorPresenterDelegateProtocol?
-    private var dataManager: AppDataManager
+    private var dataManager: PandemicDataManagerProtocol
 
     private var state: State = .init(riskGroup: ThreadSafeMatrix<Infectable>())
     private let infectionUpdateInterval: TimeInterval
@@ -52,7 +53,7 @@ final class MonitorPresenter {
     }
 
     init(view: MonitorViewProtocol,
-         dataManager: AppDataManager,
+         dataManager: PandemicDataManagerProtocol,
          infectionUpdateInterval: TimeInterval,
          delegate: MonitorPresenterDelegateProtocol)
     {
@@ -113,7 +114,7 @@ extension MonitorPresenter: MonitorPresenterProtocol {
     func getHeaderDisplayData() -> MonitorHeaderView.DisplayData {
         let infectedElementsCount = state.riskGroup.countElements - state.healthyElementsCount
         return MonitorHeaderView.DisplayData(healthyElementsCount: state.healthyElementsCount,
-                                      infectedElementsCount: infectedElementsCount)
+                                             infectedElementsCount: infectedElementsCount)
     }
 
     func didTapOnElement(at indexPath: IndexPath) {
@@ -121,6 +122,10 @@ extension MonitorPresenter: MonitorPresenterProtocol {
         startTimerIfNeeded()
         updateCurrentState()
         view?.renderUserInterface()
+    }
+
+    func didTapOnBackButton() {
+        delegate?.didTapOnBackButton()
     }
 }
 
