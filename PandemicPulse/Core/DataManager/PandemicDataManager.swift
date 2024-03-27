@@ -21,6 +21,8 @@ final class PandemicDataManager: AppDataManager {
     private let infectionFactor: Int
 
     private var healthyElementsCount: Int
+    private var potentialInfectionSpreadersPositions: Set<Position> = []
+
     var onCompletion: (() -> Void)?
 
     init(riskGroup: ThreadSafeMatrix<Infectable>, infectionFactor: Int) {
@@ -39,32 +41,48 @@ final class PandemicDataManager: AppDataManager {
 
     func infectElement(at position: Position) {
         riskGroup[position.row, position.column].isInfected = true
+        potentialInfectionSpreadersPositions.insert(position)
         healthyElementsCount -= 1
         onCompletion?()
     }
 
     func spreadInfectionInGroup() {
-        let infectedPeoplePositions = generatePositionsOfRandomlyInfectedElements()
+        let justInfectedPeoplePositions = generatePositionsOfRandomlyInfectedElements()
 
-        for position in infectedPeoplePositions {
+        for position in justInfectedPeoplePositions {
+            // Точечно "инфицируем" полученный элемент
             riskGroup[position.row, position.column].isInfected = true
+            // Уменьшаем счетчик здоровых элементов
             healthyElementsCount -= 1
         }
+        // Добавляем позиции только что зараженных элементов в множество потенциальных распространителей инфекции
+        potentialInfectionSpreadersPositions = potentialInfectionSpreadersPositions.union(justInfectedPeoplePositions)
         onCompletion?()
     }
 
+    /// Генерирует рандомное множество  элементов из здоровых элементов, соседствующих с инфицированными.
+    /// Удаляет из множества потенциальных распростарнителей инфекции - тех, у кого не здоровых соседей.
     private func generatePositionsOfRandomlyInfectedElements() -> Set<Position> {
-        var infectedElementsPositions: Set<Position> = []
-        for (rowNumber, row) in riskGroup.enumerated() {
-            for (columnNumber, element) in row.enumerated() where element.isInfected {
-                let elementPosition = Position(row: rowNumber, column: columnNumber)
-                let elementNeighbors = riskGroup.getNeighborsOfElement(at: elementPosition)
-                let healthyNeighbors = elementNeighbors.filter { !$0.element.isInfected }
+        var newInfectionSpreaders: Set<Position> = []
+
+        for position in potentialInfectionSpreadersPositions {
+            // Находим всех здоровых соседей этой позиции
+            let elementNeighbors = riskGroup.getNeighborsOfElement(at: position)
+            // Получаем всех здоровых соседей
+            let healthyNeighbors = elementNeighbors.filter { !$0.element.isInfected }
+            // Если здоровых соседей (котрых потенциально можно заразить) нет - удалить элемент из множества
+            if healthyNeighbors.isEmpty {
+                potentialInfectionSpreadersPositions.remove(position)
+                // Если здоровые соседи есть
+            } else {
+                // Рандомно выбираем тех из них, кто будет заражен (не превышая установленный infectionFactor)
                 let neighborsBeingInfected = healthyNeighbors.getRandomElements(limit: infectionFactor)
+                // Получаем массив позиций тех, кто будет заражен
                 let positionsOfInfectedNeighbors = neighborsBeingInfected.map { $0.position }
-                infectedElementsPositions = infectedElementsPositions.union(Set(positionsOfInfectedNeighbors))
+                // Сохраняем позиции тех, кто будет заражен во временный контейнер (множество сразу удалит дубликаты)
+                newInfectionSpreaders = newInfectionSpreaders.union(Set(positionsOfInfectedNeighbors))
             }
         }
-        return infectedElementsPositions
+        return newInfectionSpreaders
     }
 }
