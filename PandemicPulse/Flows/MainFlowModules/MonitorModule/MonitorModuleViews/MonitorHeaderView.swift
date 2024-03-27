@@ -72,7 +72,7 @@ final class MonitorHeaderView: UIView {
         stackView.spacing = Constants.mainStackSpacing
         stackView.alignment = .center
         stackView.distribution = .equalCentering
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
