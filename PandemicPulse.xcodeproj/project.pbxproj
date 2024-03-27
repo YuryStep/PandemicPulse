@@ -195,7 +195,6 @@
 		EF60A1342BB02D4800B19D36 /* MainFlowModules */ = {
 			isa = PBXGroup;
 			children = (
-				EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */,
 				EFE22D5B2BB2CCD1003144A0 /* SettingsInputModule */,
 				EF60A1312BB02B4300B19D36 /* MonitorModule */,
 			);
@@ -236,6 +235,7 @@
 			children = (
 				EFE22D6B2BB35034003144A0 /* CoordinatorProtocol.swift */,
 				EFE22D632BB2EDD5003144A0 /* AppCoordinator.swift */,
+				EFE22D652BB2F09F003144A0 /* MainFlowCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";

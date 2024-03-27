@@ -38,7 +38,8 @@ final class SettingsViewController: UIViewController {
     private lazy var infectionFactorLabel = SettingsLabel(text: Constants.infectionFactorLabelText)
     private lazy var infectionFactorTextField = SettingsTextField(placeholder: Constants.infectionFactorTextFieldPlaceholder)
     private lazy var periodLabel = SettingsLabel(text: Constants.periodLabelText)
-    private lazy var periodTextField = SettingsTextField(placeholder: Constants.periodTextFieldPlaceholder)
+    private lazy var periodTextField = SettingsTextField(
+        placeholder: Constants.periodTextFieldPlaceholder)
 
     private lazy var startSimulationButton: UIButton = {
         let button = UIButton(type: .system)
